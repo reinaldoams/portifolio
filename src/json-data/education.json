@@ -1,0 +1,48 @@
+{
+    "education": [
+        {
+            "institution": "Ifes - Instituto Federal do Espírito Santo",
+            "course": "Business and Administration Vocational High School",
+            "period": "2012 – 2015",
+            "imageUrl": "/logos/ifes.jpeg",
+            "imageAlt": "IFES logo"
+        },
+        {
+            "institution": "Ufes - Universidade Federal do Espírito Santo",
+            "course": "Nutrition Sciences Bachelor's degree",
+            "period": "2016 – 2021",
+            "imageUrl": "/logos/ufes.jpeg",
+            "imageAlt": "UFES logo"
+        },
+        {
+            "institution": "Estácio",
+            "course": "Software Engineering Postgraduate Degree",
+            "period": "2021 – 2022",
+            "imageUrl": "/logos/estacio.jpeg",
+            "imageAlt": "Estacio logo"
+        }
+    ],
+    "certifications": [
+        {
+            "institution": "EF SET",
+            "name": "EF SET Certificate C2 Proficient",
+            "url": "https://cert.efset.org/cudD3g",
+            "imageUrl": "/logos/efset.jpeg",
+            "imageAlt": "EF SET logo"
+        },
+        {
+            "institution": "Apollo GraphQL",
+            "name": "Graph Developer - Associate",
+            "url": "https://www.apollographql.com/tutorials/certifications/d034cbc5-068e-4f51-9a95-dab0d7394bf1",
+            "imageUrl": "/logos/apollo.jpeg",
+            "imageAlt": "Apollo GraphQL logo"
+        },
+        {
+            "institution": "SCRUMstudy",
+            "name": "Scrum Fundamentals Certified (SFC)",
+            "url": "https://www.scrumstudy.com/certification/verify?type=SFC&number=874216",
+            "imageUrl": "/logos/scrumstudy.jpeg",
+            "imageAlt": "SCRUMstudy logo"
+        }
+    ]
+}

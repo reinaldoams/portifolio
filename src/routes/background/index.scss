@@ -1,0 +1,35 @@
+.background-page {
+  text-align: left;
+
+  h2 {
+    span {
+      font-size: 1rem;
+    }
+  }
+
+  h3 {
+    min-width: 15%;
+    max-width: 15%;
+  }
+}
+
+.roleList {
+  list-style: disc;
+  padding-inline-start: 1.5rem;
+  margin-bottom: 2rem;
+
+  > li {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: disc;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-inline-start: 1.25rem;
+  }
+
+  ul li {
+    margin-bottom: 0.1rem;
+  }
+}
