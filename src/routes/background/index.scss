@@ -2,34 +2,51 @@
   text-align: left;
 
   h2 {
+    font-size: calc(17px * var(--ui-scale));
+    margin-bottom: calc(8px * var(--ui-scale));
+
     span {
-      font-size: 1rem;
+      font-size: calc(13px * var(--ui-scale));
+      font-weight: normal;
+      color: var(--win95-text);
     }
   }
 
   h3 {
-    min-width: 15%;
-    max-width: 15%;
+    min-width: unset;
+    max-width: unset;
+    font-size: calc(15px * var(--ui-scale));
+    margin-bottom: calc(4px * var(--ui-scale));
   }
 }
 
 .roleList {
-  list-style: disc;
-  padding-inline-start: 1.5rem;
-  margin-bottom: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 calc(8px * var(--ui-scale));
 
   > li {
-    margin-bottom: 1rem;
+    margin-bottom: calc(12px * var(--ui-scale));
+    padding: calc(8px * var(--ui-scale)) calc(10px * var(--ui-scale));
+    border: calc(2px * var(--ui-scale)) solid;
+    border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+      var(--win95-border-light);
+    background: var(--win95-light-gray-bg);
+    box-shadow: calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 var(--win95-border-mid);
   }
 
   ul {
     list-style: disc;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding-inline-start: 1.25rem;
+    margin: calc(6px * var(--ui-scale)) 0 0;
+    padding-inline-start: calc(1.25rem * var(--ui-scale));
   }
 
   ul li {
-    margin-bottom: 0.1rem;
+    margin-bottom: calc(4px * var(--ui-scale));
+    font-size: calc(14px * var(--ui-scale));
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
   }
 }

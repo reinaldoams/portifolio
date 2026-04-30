@@ -9,8 +9,8 @@ function BackgroundPage() {
         <li>
           <h3>Public Sector Web Systems</h3>
           <ul>
-            <li>Engineered and maintained high-traffic web systems for the Norwegian government, including institutional, health, and library services.</li>
-            <li>Architected a global microservices architecture for asset delivery, streamlining resource management across multiple large-scale projects.</li>
+            <li>Engineered and maintained high-traffic national web systems for the Norwegian government, including institutional, health, and library services.</li>
+            <li>Architected global microservices architecture for asset delivery, streamlining resource management across multiple large-scale projects.</li>
           </ul>
         </li>
         <li>

@@ -1,3 +1,362 @@
+// Classic Windows 95 raised / sunken borders
+@mixin win95-outset {
+  $b: calc(2px * var(--ui-scale));
+  border: $b solid;
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+    var(--win95-border-light);
+  box-shadow: calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 var(--win95-border-mid);
+}
+
+@mixin win95-inset {
+  $b: calc(2px * var(--ui-scale));
+  border: $b solid;
+  border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
+    var(--win95-border-dark);
+  background: var(--win95-field-bg);
+}
+
+$win95-scroll-arrow-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath fill='%23000' d='M4 0l4 5H0z'/%3E%3C/svg%3E");
+$win95-scroll-arrow-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath fill='%23000' d='M4 5l4-5H0z'/%3E%3C/svg%3E");
+
+.win95-desktop {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  background: var(--win95-desktop);
+  // Subtle checkerboard like some Win95 themes (optional texture)
+  background-image:
+    linear-gradient(45deg, rgba(0, 0, 0, 0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.04) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.04) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.04) 75%);
+  background-size: 4px 4px;
+  background-position:
+    0 0,
+    0 2px,
+    2px -2px,
+    -2px 0;
+}
+
+.win95-window--app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - (4rem * var(--ui-scale)));
+  min-height: 0;
+  margin: calc(2rem * var(--ui-scale));
+  overflow: hidden;
+  background: var(--win95-face);
+  @include win95-outset;
+}
+
+.win95-titlebar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: calc(8px * var(--ui-scale));
+  min-height: calc(28px * var(--ui-scale));
+  padding: calc(3px * var(--ui-scale)) calc(4px * var(--ui-scale)) calc(3px * var(--ui-scale))
+    calc(6px * var(--ui-scale));
+  background: #000080;
+  color: var(--win95-titlebar-text);
+  font-weight: bold;
+  font-size: calc(13px * var(--ui-scale));
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.win95-titlebar__icon {
+  width: calc(18px * var(--ui-scale));
+  height: calc(18px * var(--ui-scale));
+  flex-shrink: 0;
+  display: block;
+  object-fit: cover;
+  @include win95-inset;
+  box-shadow: none;
+}
+
+.win95-titlebar__text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win95-titlebar__controls {
+  display: flex;
+  gap: calc(2px * var(--ui-scale));
+  flex-shrink: 0;
+}
+
+.win95-titlebar__control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(20px * var(--ui-scale));
+  height: calc(18px * var(--ui-scale));
+  font-size: calc(11px * var(--ui-scale));
+  line-height: 1;
+  color: var(--win95-text);
+  background: var(--win95-face);
+  border: calc(2px * var(--ui-scale)) solid;
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+    var(--win95-border-light);
+  padding: 0 0 calc(1px * var(--ui-scale));
+  box-sizing: border-box;
+
+  &--close {
+    font-weight: bold;
+    font-size: calc(12px * var(--ui-scale));
+  }
+
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.55;
+    border-color: var(--win95-border-shadow) var(--win95-border-mid) var(--win95-border-mid)
+      var(--win95-border-shadow);
+    box-shadow: inset calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 rgba(0, 0, 0, 0.08);
+  }
+}
+
+button.win95-titlebar__control {
+  margin: 0;
+  font: inherit;
+  font-size: calc(11px * var(--ui-scale));
+  cursor: pointer;
+  appearance: none;
+
+  &.win95-titlebar__control--close {
+    font-size: calc(12px * var(--ui-scale));
+    font-weight: bold;
+  }
+
+  &:not(:disabled):active {
+    border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
+      var(--win95-border-dark);
+    padding: calc(1px * var(--ui-scale)) 0 0 calc(1px * var(--ui-scale));
+  }
+}
+
+.win95-desktop-icons {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: calc(16px * var(--ui-scale)) calc(20px * var(--ui-scale));
+  min-height: 0;
+}
+
+.win95-desktop-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(120px * var(--ui-scale));
+  max-width: 100%;
+  margin: 0;
+  padding: calc(6px * var(--ui-scale)) calc(4px * var(--ui-scale));
+  border: calc(2px * var(--ui-scale)) dotted transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  font: inherit;
+  text-align: center;
+  text-shadow:
+    0 0 calc(2px * var(--ui-scale)) #000000,
+    0 0 calc(4px * var(--ui-scale)) #000000;
+  cursor: pointer;
+  touch-action: manipulation;
+
+  &:hover {
+    border-color: #000080;
+  }
+
+  &:focus-visible {
+    outline: calc(2px * var(--ui-scale)) dotted #ffffff;
+    outline-offset: calc(2px * var(--ui-scale));
+  }
+
+  &:active {
+    border-style: solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.win95-desktop-shortcut__graphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(44px * var(--ui-scale));
+  height: calc(44px * var(--ui-scale));
+  margin-bottom: calc(6px * var(--ui-scale));
+}
+
+.win95-desktop-shortcut__svg {
+  display: block;
+  width: calc(40px * var(--ui-scale));
+  height: calc(40px * var(--ui-scale));
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.win95-desktop-shortcut__label {
+  font-size: calc(12px * var(--ui-scale));
+  font-weight: bold;
+  line-height: 1.15;
+  word-break: break-all;
+  hyphens: manual;
+}
+
+.win95-window__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  padding: calc(12px * var(--ui-scale)) calc(14px * var(--ui-scale)) calc(14px * var(--ui-scale));
+  background: var(--win95-face);
+}
+
 .routes {
-  margin: 5rem
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  @include win95-inset;
+  padding: 0;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: var(--win95-gray-bg);
+}
+
+.routes__viewport {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.routes__content {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: calc(16px * var(--ui-scale)) calc(18px * var(--ui-scale));
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  text-align: center;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+.routes__scrollbar {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: calc(17px * var(--ui-scale));
+  align-self: stretch;
+  background: #c0c0c0;
+  border-left: calc(1px * var(--ui-scale)) solid #808080;
+  box-sizing: border-box;
+}
+
+.routes__scrollbar-btn {
+  flex-shrink: 0;
+  height: calc(17px * var(--ui-scale));
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background-color: #c0c0c0;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: inset calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 #dfdfdf;
+  border: calc(2px * var(--ui-scale)) solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.65;
+  }
+
+  &:not(:disabled):active {
+    border-color: #000000 #ffffff #ffffff #000000;
+    box-shadow: inset calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 #808080;
+    background-position: calc(50% + (1px * var(--ui-scale))) calc(50% + (1px * var(--ui-scale)));
+  }
+
+  &--up {
+    background-image: $win95-scroll-arrow-up;
+  }
+
+  &--down {
+    background-image: $win95-scroll-arrow-down;
+  }
+}
+
+.routes__scrollbar-track {
+  position: relative;
+  flex: 1;
+  min-height: calc(32px * var(--ui-scale));
+  box-sizing: border-box;
+  background-color: #c0c0c0;
+  background-image:
+    linear-gradient(90deg, #b8b8b8 50%, transparent 50%),
+    linear-gradient(#b8b8b8 50%, transparent 50%);
+  background-size: 2px 2px;
+  border: calc(1px * var(--ui-scale)) solid;
+  border-color: #808080 #dfdfdf #dfdfdf #808080;
+  margin: 0 calc(1px * var(--ui-scale));
+}
+
+.routes__scrollbar-thumb {
+  position: absolute;
+  left: -1.5px;
+  right: 0;
+  top: 0;
+  width: 120%;
+  box-sizing: border-box;
+  border-radius: 0;
+  background-color: #c0c0c0;
+  border: calc(2px * var(--ui-scale)) solid;
+  border-color: #ffffff #000000 #000000 #ffffff;
+  box-shadow: inset calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 #dfdfdf;
+  cursor: grab;
+  /* Let the browser route pointer moves to the thumb while dragging (mobile) */
+  touch-action: none;
+
+  &:active,
+  &--dragging {
+    cursor: grabbing;
+    border-color: #000000 #ffffff #ffffff #000000;
+    box-shadow: inset calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 #808080;
+  }
+}
+
+@media (max-width: 995px) {
+  .win95-window--app {
+    width: 100%;
+    margin: 0;
+  }
+
+  .win95-window__body {
+    padding: calc(10px * var(--ui-scale));
+  }
+
+  .routes__content {
+    padding: calc(12px * var(--ui-scale));
+  }
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import './index.scss'
 import jsonData from '../../json-data/education.json'
 
@@ -10,28 +9,30 @@ export default function EducationPage() {
         <h2>Education</h2>
         {jsonData?.education?.length > 0 ? <ul>
           {jsonData.education.map(educationItem => (
-            <li>
+            <li key={educationItem.institution}>
               <img src={educationItem.imageUrl} alt={educationItem.imageAlt} />
-              <p>
+              <div className="education-item__text">
                 <p className="course">{educationItem.course}</p>
                 <p className="institution">{educationItem.institution}</p>
                 <p className="period">{educationItem.period}</p>
-              </p>
+              </div>
             </li>
           ))}
         </ul> : <></>}
       </div>
       <div>
-        <h2>Certificates</h2>
+        <h2>Certifications</h2>
         {jsonData?.certifications?.length > 0 ? <ul>
           {jsonData.certifications.map(certificationItem => (
-            <li>
+            <li key={certificationItem.institution}>
               <img src={certificationItem.imageUrl} alt={certificationItem.imageAlt} />
-              <p>
+              <div className="education-item__text">
                 <p className="course">{certificationItem.name}</p>
                 <p className="institution">{certificationItem.institution}</p>
-                <a href="{certificationItem.url}" target="_blank">See certification</a>
-              </p>
+                <a href={certificationItem.url} target="_blank" rel="noreferrer">
+                  See certification
+                </a>
+              </div>
             </li>
           ))}
         </ul> : <></>}

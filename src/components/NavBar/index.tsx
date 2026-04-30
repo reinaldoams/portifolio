@@ -1,15 +1,29 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './index.scss'
 
 function NavBar() {
   return (
-    <nav>
-        <Link to="/">Main Page</Link>
-        <Link to="/education">Education & Certifications</Link>
-        <Link to="/background">Professional background</Link>
-        {/* <Link to="/projects">Projects</Link> */}
-        <Link to="/contact">Contact</Link>
+    <nav className="win95-menu-bar">
+      <NavLink end to="/" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
+        Main Page
+      </NavLink>
+      <NavLink
+        to="/education"
+        className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+      >
+        Education & Certifications
+      </NavLink>
+      <NavLink
+        to="/background"
+        className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+      >
+        Professional background
+      </NavLink>
+      {/* <NavLink to="/projects" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>Projects</NavLink> */}
+      <NavLink to="/contact" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
+        Contact
+      </NavLink>
     </nav>
   )
 }
