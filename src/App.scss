@@ -28,13 +28,6 @@ $win95-scroll-arrow-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.or
   padding: 0;
   background: var(--win95-desktop);
 
-  &--projects-route {
-    overflow: visible;
-  }
-
-  &--projects-route > .win95-window--app {
-    overflow: visible;
-  }
   // Subtle checkerboard like some Win95 themes (optional texture)
   background-image:
     linear-gradient(45deg, rgba(0, 0, 0, 0.04) 25%, transparent 25%),
@@ -233,95 +226,6 @@ button.win95-titlebar__control {
   overflow: hidden;
 }
 
-.body-switcher {
-  flex: 1;
-  display: grid;
-  grid-template-rows: 1fr 0fr;
-  min-height: 0;
-  overflow: hidden;
-  transition: grid-template-rows 0.42s cubic-bezier(0.52, 0, 0.2, 1);
-
-  &--projects {
-    grid-template-rows: 0fr 1fr;
-  }
-
-  &__row {
-    min-height: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__row--main .win95-window__body {
-    flex: 1;
-    min-height: 0;
-  }
-
-  &__row--projects .win95-window__projects-viewport {
-    flex: 1;
-    min-height: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .body-switcher {
-    transition: none;
-  }
-
-  .body-switcher--projects .win95-window__projects-viewport {
-    animation: none;
-  }
-
-  .win95-window__body--blind-up {
-    animation: none;
-  }
-}
-
-.win95-window__projects-viewport {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  overflow: hidden;
-  padding: calc(12px * var(--ui-scale)) calc(14px * var(--ui-scale)) calc(14px * var(--ui-scale));
-  background: var(--win95-face);
-}
-
-.body-switcher--projects .win95-window__projects-viewport {
-  position: fixed;
-  top: var(--win95-projects-layer-top, 0px);
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  max-width: 100vw;
-  margin: 0;
-  padding: 0;
-  z-index: 1;
-  animation: win95-projects-viewport-in 0.42s cubic-bezier(0.32, 0.72, 0.24, 1);
-  background: #000;
-  color: #e8eaed;
-}
-
-.body-switcher--projects .win95-window__projects-viewport > .routes {
-  flex: 1;
-  min-height: 0;
-  background: #000;
-}
-
-.body-switcher--projects .win95-window__projects-viewport .routes__content {
-  background: #000;
-}
-
-@keyframes win95-projects-viewport-in {
-  from {
-    transform: translateY(calc(10px * var(--ui-scale)));
-  }
-
-  to {
-    transform: translateY(0);
-  }
-}
-
 .win95-window__body {
   flex: 1;
   display: flex;
@@ -330,21 +234,6 @@ button.win95-titlebar__control {
   overflow: hidden;
   padding: calc(12px * var(--ui-scale)) calc(14px * var(--ui-scale)) calc(14px * var(--ui-scale));
   background: var(--win95-face);
-  clip-path: inset(0 0 0 0);
-}
-
-@keyframes win95-main-blind-up {
-  from {
-    clip-path: inset(0 0 0 0);
-  }
-
-  to {
-    clip-path: inset(0 0 100% 0);
-  }
-}
-
-.win95-window__body--blind-up {
-  animation: win95-main-blind-up 0.45s cubic-bezier(0.38, 0.02, 0.32, 1) forwards;
 }
 
 .routes {

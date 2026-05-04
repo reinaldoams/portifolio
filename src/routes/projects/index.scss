@@ -10,32 +10,36 @@
   border: 0;
 }
 
+.win95-window__body:has(.projects-layout) {
+  padding: 0;
+}
+
+.routes__content:has(.projects-layout) {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
 .projects-layout {
   flex: 1;
   min-height: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-}
-
-/* Win95ScrollBox uses `.routes__content { text-align: center }` globally; projects read better left-aligned. */
-.win95-window__projects-viewport .routes__content {
+  box-sizing: border-box;
   text-align: left;
+  background: #000;
+  color: #e8eaed;
 }
 
-/* Same horizontal inset as `.win95-window--app` (title bar + menu width on desktop). */
 .projects-list {
   flex: 1;
   min-height: 0;
   min-width: 0;
   overflow: visible;
   box-sizing: border-box;
-  width: auto;
-  margin-inline: calc(2rem * var(--ui-scale));
+  width: 100%;
   padding: calc(20px * var(--ui-scale)) calc(22px * var(--ui-scale)) calc(32px * var(--ui-scale));
-
-  @media (max-width: 995px) {
-    margin-inline: 0;
-  }
 }
 
 .projects-list__heading {
