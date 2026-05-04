@@ -86,6 +86,10 @@ $win95-scroll-arrow-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.or
   box-shadow: none;
 }
 
+.win95-titlebar__icon--game {
+  object-fit: fill;
+}
+
 .win95-titlebar__text {
   flex: 1;
   white-space: nowrap;
@@ -155,6 +159,13 @@ button.win95-titlebar__control {
   justify-content: flex-start;
   padding: calc(16px * var(--ui-scale)) calc(20px * var(--ui-scale));
   min-height: 0;
+}
+
+.win95-desktop-icons__row {
+  display: flex;
+  flex-flow: row wrap;
+  gap: calc(22px * var(--ui-scale)) calc(28px * var(--ui-scale));
+  align-items: flex-start;
 }
 
 .win95-desktop-shortcut {
@@ -234,6 +245,11 @@ button.win95-titlebar__control {
   overflow: hidden;
   padding: calc(12px * var(--ui-scale)) calc(14px * var(--ui-scale)) calc(14px * var(--ui-scale));
   background: var(--win95-face);
+}
+
+.win95-window__body--game {
+  align-items: center;
+  overflow-y: auto;
 }
 
 .routes {

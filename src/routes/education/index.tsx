@@ -20,7 +20,7 @@ export default function EducationPage() {
           ))}
         </ul> : <></>}
       </div>
-      <div>
+      <div className="education-page__certs">
         <h2>Certifications</h2>
         {jsonData?.certifications?.length > 0 ? <ul>
           {jsonData.certifications.map(certificationItem => (

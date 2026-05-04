@@ -51,7 +51,6 @@
     }
 
     .institution {
-      font-weight: bold;
       font-size: calc(14px * var(--ui-scale));
     }
 
@@ -66,6 +65,11 @@
       font-size: calc(14px * var(--ui-scale));
     }
   }
+}
+
+.education-page__certs li .education-item__text {
+  flex: 1;
+  text-align: center;
 }
 
 @media (min-width: 900px) {
@@ -83,17 +87,15 @@
 @media (max-width: 415px) {
   .education-page li {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
 
     img {
       margin: 0 0 calc(10px * var(--ui-scale)) 0;
-      align-self: center;
+      align-self: flex-start;
     }
 
     .education-item__text {
       width: 100%;
-      text-align: center;
     }
   }
 }
