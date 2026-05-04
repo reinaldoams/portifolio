@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.scss'
-import { Routes, Route, useLocation, useNavigate, useOutlet } from 'react-router-dom'
+import { Routes, Route, useNavigate, useOutlet } from 'react-router-dom'
 import MainPage from './routes/MainPage'
 import NavBar from './components/NavBar'
 import { Win95ScrollBox } from './components/Win95ScrollBox'
@@ -13,11 +13,9 @@ import ContactPage from './routes/contact'
 
 function BodySwitcher() {
   const outlet = useOutlet()
-  const { pathname } = useLocation()
-  const isProjects = pathname.startsWith('/projects')
   return (
-    <main className={`win95-window__body${isProjects ? ' win95-window__body--projects' : ''}`}>
-      {isProjects ? outlet : <Win95ScrollBox>{outlet}</Win95ScrollBox>}
+    <main className="win95-window__body">
+      <Win95ScrollBox>{outlet}</Win95ScrollBox>
     </main>
   )
 }

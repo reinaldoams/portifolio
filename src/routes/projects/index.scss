@@ -10,25 +10,73 @@
   border: 0;
 }
 
-/* Projects: no Win95ScrollBox — scroll `main` natively; keep chrome black. */
-.win95-window__route-mount:has(.projects-layout),
-.win95-window__body--projects {
+/* Projects + Win95ScrollBox: black client area and dark scrollbar strip. */
+.win95-window__route-mount:has(.projects-layout) {
   background: #000;
 }
 
-.win95-window__body--projects {
-  overflow-x: hidden;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+.win95-window__body:has(.projects-layout) {
+  background: #000;
+  padding: 0;
+}
+
+.routes:has(.projects-layout) {
+  background: #000;
+  border: 0;
+  box-shadow: none;
+}
+
+.routes__viewport:has(.projects-layout),
+.routes__content:has(.projects-layout) {
+  background: #000;
+}
+
+.routes__content:has(.projects-layout) {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  min-height: 100%;
+  overscroll-behavior-y: none;
+  text-align: left;
+}
+
+.routes:has(.projects-layout) .routes__scrollbar {
+  background: #0a0a0a;
+  border-left-color: #1f1f1f;
+}
+
+.routes:has(.projects-layout) .routes__scrollbar-btn {
+  background-color: #141414;
+  border-color: #2a2a2a #000 #000 #2a2a2a;
+  box-shadow: inset 1px 1px 0 #333;
+}
+
+.routes:has(.projects-layout) .routes__scrollbar-track {
+  background-color: #0a0a0a;
+  background-image: none;
+  border-color: #000 #1a1a1a #1a1a1a #000;
+}
+
+.routes:has(.projects-layout) .routes__scrollbar-thumb {
+  background-color: #222;
+  border-color: #3a3a3a #0a0a0a #0a0a0a #3a3a3a;
+  box-shadow: inset 1px 1px 0 #333;
+}
+
+.routes:has(.projects-layout) .routes__scrollbar-thumb:active,
+.routes:has(.projects-layout) .routes__scrollbar-thumb--dragging {
+  border-color: #050505 #383838 #383838 #050505;
+  box-shadow: inset 1px 1px 0 #2a2a2a;
 }
 
 .projects-layout {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
-  min-width: 0;
-  min-height: 100%;
   text-align: left;
   background: #000;
   color: #e8eaed;
@@ -122,7 +170,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   text-align: right;
   padding: calc(18px * var(--ui-scale)) calc(20px * var(--ui-scale)) calc(18px * var(--ui-scale))
