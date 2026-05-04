@@ -1,10 +1,10 @@
-import React from 'react'
+import { Outlet } from 'react-router-dom'
 import './index.scss'
 
-function ProjectsPage() {
+export default function ProjectsLayout() {
   return (
-    <p>Projects page</p>
+    <div className="projects-layout">
+      <Outlet />
+    </div>
   )
 }
-
-export default ProjectsPage

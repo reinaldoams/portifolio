@@ -21,7 +21,10 @@
   max-width: 100%;
   margin: 0;
   padding: calc(6px * var(--ui-scale)) calc(4px * var(--ui-scale));
-  border: calc(2px * var(--ui-scale)) dotted transparent;
+  border-style: solid;
+  border-width: calc(2px * var(--ui-scale));
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+    var(--win95-border-light);
   border-radius: 0;
   background: transparent;
   color: var(--win95-text);
@@ -31,30 +34,35 @@
   cursor: pointer;
   box-sizing: border-box;
 
-  // Match Win95 / desktop shortcuts: no default link purple when visited
   &,
   &:link,
-  &:visited,
-  &:hover,
-  &:active {
+  &:visited {
     color: var(--win95-text);
     text-decoration: none;
   }
 
+  /* Same as `nav.win95-menu-bar a.is-active` / MainPage Projects tile */
   &:hover {
-    border-color: #000080;
-    color: var(--win95-text);
+    background: var(--win95-highlight);
+    color: var(--win95-highlight-text);
+    border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
+      var(--win95-border-dark);
   }
 
   &:focus-visible {
     outline: calc(1px * var(--ui-scale)) dotted #000;
     outline-offset: calc(2px * var(--ui-scale));
+    background: var(--win95-highlight);
+    color: var(--win95-highlight-text);
+    border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
+      var(--win95-border-dark);
   }
 
   &:active {
-    border-style: solid;
-    border-color: #fff #000 #000 #fff;
-    background: rgba(0, 0, 0, 0.06);
+    background: var(--win95-highlight);
+    color: var(--win95-highlight-text);
+    border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
+      var(--win95-border-dark);
   }
 }
 

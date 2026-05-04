@@ -1,0 +1,54 @@
+{
+  "projects": [
+    {
+      "slug": "portfolio-leticia",
+      "name": "Portfolio Letícia",
+      "year": 2026,
+      "summary": "Website for Letícia, a Product designer branding specialist.",
+      "description": "A modern artistic portfolio website, made working closely to meet her branding and design needs.",
+      "url": "https://portifolio-leticia-p39q4tsyi-reinaldo-assis-projects.vercel.app/",
+      "mainImage": "/projects/project-leticia-1.png",
+      "gallery": ["/projects/project-leticia-1.png", "/projects/project-leticia-1.png"]
+    },
+    {
+      "slug": "portfolio-leticia",
+      "name": "Portfolio Letícia",
+      "year": 2024,
+      "summary": "Windows 95–inspired portfolio experience on Vercel.",
+      "description": "A nostalgic desktop-style portfolio with faux window chrome, navigation, and routed sections. Built for presentation and deployed on Vercel.",
+      "url": "https://portifolio-leticia-p39q4tsyi-reinaldo-assis-projects.vercel.app/",
+      "mainImage": "/projects/project-leticia-1.png",
+      "gallery": ["/projects/project-leticia-1.png", "/projects/project-leticia-1.png"]
+    },
+    {
+      "slug": "portfolio-leticia",
+      "name": "Portfolio Letícia",
+      "year": 2024,
+      "summary": "Windows 95–inspired portfolio experience on Vercel.",
+      "description": "A nostalgic desktop-style portfolio with faux window chrome, navigation, and routed sections. Built for presentation and deployed on Vercel.",
+      "url": "https://portifolio-leticia-p39q4tsyi-reinaldo-assis-projects.vercel.app/",
+      "mainImage": "/projects/project-leticia-1.png",
+      "gallery": ["/projects/project-leticia-1.png", "/projects/project-leticia-1.png"]
+    },
+    {
+      "slug": "portfolio-leticia",
+      "name": "Portfolio Letícia",
+      "year": 2024,
+      "summary": "Windows 95–inspired portfolio experience on Vercel.",
+      "description": "A nostalgic desktop-style portfolio with faux window chrome, navigation, and routed sections. Built for presentation and deployed on Vercel.",
+      "url": "https://portifolio-leticia-p39q4tsyi-reinaldo-assis-projects.vercel.app/",
+      "mainImage": "/projects/project-leticia-1.png",
+      "gallery": ["/projects/project-leticia-1.png", "/projects/project-leticia-1.png"]
+    },
+    {
+      "slug": "portfolio-leticia",
+      "name": "Portfolio Letícia",
+      "year": 2024,
+      "summary": "Windows 95–inspired portfolio experience on Vercel.",
+      "description": "A nostalgic desktop-style portfolio with faux window chrome, navigation, and routed sections. Built for presentation and deployed on Vercel.",
+      "url": "https://portifolio-leticia-p39q4tsyi-reinaldo-assis-projects.vercel.app/",
+      "mainImage": "/projects/project-leticia-1.png",
+      "gallery": ["/projects/project-leticia-1.png", "/projects/project-leticia-1.png"]
+    }
+  ]
+}

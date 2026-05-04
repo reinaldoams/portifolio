@@ -107,7 +107,6 @@ function ContactPage() {
           </span>
           <span className="contact-icon-item__label">
             GitHub
-            <span className="contact-icon-item__sublabel">reinaldoams</span>
           </span>
         </a>
         <a
@@ -121,7 +120,6 @@ function ContactPage() {
           </span>
           <span className="contact-icon-item__label">
             LinkedIn
-            <span className="contact-icon-item__sublabel">reinaldoams</span>
           </span>
         </a>
         <button type="button" className="contact-icon-item" onClick={copyEmail} aria-label="Copy email address">
@@ -130,7 +128,6 @@ function ContactPage() {
           </span>
           <span className="contact-icon-item__label">
             E-mail
-            <span className="contact-icon-item__sublabel">{EMAIL}</span>
           </span>
         </button>
       </div>

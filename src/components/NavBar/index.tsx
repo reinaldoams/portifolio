@@ -1,12 +1,13 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './index.scss'
 
 function NavBar() {
+  const { pathname } = useLocation()
+
   return (
     <nav className="win95-menu-bar">
       <NavLink end to="/" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
-        Main Page
+        Home
       </NavLink>
       <NavLink
         to="/education"
@@ -20,7 +21,12 @@ function NavBar() {
       >
         Professional background
       </NavLink>
-      {/* <NavLink to="/projects" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>Projects</NavLink> */}
+      <NavLink
+        to="/projects"
+        className={() => (pathname.startsWith('/projects') ? 'is-active' : undefined)}
+      >
+        Projects
+      </NavLink>
       <NavLink to="/contact" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
         Contact
       </NavLink>

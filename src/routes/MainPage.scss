@@ -1,0 +1,9 @@
+.main-page__contact-style-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: min(38vh, 280px);
+  margin-top: calc(12px * var(--ui-scale));
+}
