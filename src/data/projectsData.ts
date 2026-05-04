@@ -3,12 +3,14 @@ import raw from '../../projects-data.json'
 export type Project = {
   slug: string
   name: string
-  year: number
+  year: number | string
   summary: string
   description: string
   url: string
   mainImage: string
   gallery: string[]
+  stack: string[]
+  tags: string[]
 }
 
 type ProjectsFile = {

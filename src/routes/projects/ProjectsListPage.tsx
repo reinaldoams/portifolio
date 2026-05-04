@@ -18,6 +18,15 @@ export default function ProjectsListPage() {
               <span className="projects-list__info">
                 <span className="projects-list__name">{p.name}</span>
                 <span className="projects-list__year">{p.year}</span>
+                {p.stack.length > 0 ? (
+                  <ul className="projects-list__tags" aria-label="Project topics">
+                    {p.stack.map((tag, i) => (
+                      <li key={`${tag}-${i}`} className="projects-list__tag">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </span>
             </Link>
           </li>

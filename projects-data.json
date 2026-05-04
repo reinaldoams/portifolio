@@ -3,12 +3,146 @@
     {
       "slug": "portfolio-leticia",
       "name": "Product Designer Website",
-      "year": 2026,
-      "summary": "Website for Letícia, a product designer branding specialist.",
-      "description": "A modern artistic portfolio website, made working closely to meet her branding and design needs.",
+      "year": "2026 - now",
+      "summary": "Portfolio and brand site for an independent product designer.",
+      "description": "Collaborative build from layout to launch: expressive visuals, clear case-study structure, and a deployable production site tuned for performance and easy updates.",
       "url": "https://portifolio-leticia-three.vercel.app/",
-      "mainImage": "/projects/project-leticia-1.png",
-      "gallery": ["/projects/project-leticia-2.png", "/projects/project-leticia-3.png"]
+      "mainImage": "/projects/leticia-santoro-portfolio/1.png",
+      "gallery": [
+        "/projects/leticia-santoro-portfolio/2.png",
+        "/projects/leticia-santoro-portfolio/3.png"
+      ],
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "TypeScript"
+      ],
+      "tags": [
+        "State management",
+        "React Context",
+        "Reusable components",
+        "i18n",
+        "Responsive design"
+      ]
+    },
+    {
+      "slug": "pensjonistforbundet",
+      "name": "Pensjonistforbundet",
+      "year": "2025 - now",
+      "summary": "Norway's largest membership organization advocating for pensioners and people with disabilities.",
+      "description": "Full-stack work on the public-facing site: member journeys, searchable content at scale, editorial workflows, and integrations that keep news, campaigns, and third-party tools in sync.",
+      "url": "https://www.pensjonistforbundet.no/",
+      "mainImage": "/projects/pensjonistforbundet/1.png",
+      "gallery": [
+        "/projects/pensjonistforbundet/2.png",
+        "/projects/pensjonistforbundet/3.png",
+        "/projects/pensjonistforbundet/4.png"
+      ],
+      "stack": [
+        "Next.js",
+        "React",
+        "SCSS",
+        "JavaScript",
+        "Contentful"
+      ],
+      "tags": [
+        "API integration",
+        "Data persistence",
+        "Content management system",
+        "Complex state management",
+        "Reusable components"
+      ]
+    },
+    {
+      "slug": "blomqvist",
+      "name": "Blomqvist",
+      "year": "2023 - now",
+      "summary": "Historic Norwegian auction house with a digital catalog and live bidding.",
+      "description": "Engineering across the customer-facing stack: resilient checkout flows, account and payment edge cases, catalog performance under peak traffic, and hardening around time-sensitive transactional rules.",
+      "url": "https://blomqvist.no/",
+      "mainImage": "/projects/blomqvist/1.png",
+      "gallery": [
+        "/projects/blomqvist/2.png",
+        "/projects/blomqvist/3.png",
+        "/projects/blomqvist/4.png",
+        "/projects/blomqvist/5.png",
+        "/projects/blomqvist/6.png",
+        "/projects/blomqvist/7.png"
+      ],
+      "stack": [
+        "React",
+        "SCSS",
+        "TypeScript",
+        "GraphQL"
+      ],
+      "tags": [
+        "API integration",
+        "Data persistence",
+        "Complex state management",
+        "Authentication and authorization",
+        "Backend integration",
+        "Payment processing"
+      ]
+    },
+    {
+      "slug": "jotron",
+      "name": "Jotron",
+      "year": 2025,
+      "summary": "Global Norwegian manufacturer of safety and communication systems for maritime, aviation, and land industries.",
+      "description": "Full-stack ownership on the corporate web presence from early milestones: product storytelling, structured content, cross-team delivery with marketing, and iterative shipping as the site and requirements evolved.",
+      "url": "https://www.jotron.com/",
+      "mainImage": "/projects/jotron/1.png",
+      "gallery": [
+        "/projects/jotron/2.png",
+        "/projects/jotron/3.png",
+        "/projects/jotron/4.png",
+        "/projects/jotron/5.png",
+        "/projects/jotron/6.png"
+      ],
+      "stack": [
+        "React",
+        "SCSS",
+        "TypeScript",
+        "React Hook Form",
+        "clsx"
+      ],
+      "tags": [
+        "State management",
+        "Database querying",
+        "Filtering and sorting",
+        "GraphQL",
+        "Backend integration",
+        "Complex state management"
+      ]
+    },
+    {
+      "slug": "helsedirektoratet",
+      "name": "Helsedirektoratet",
+      "year": 2023,
+      "summary": "National health authority publishing guidelines, statistics, and services for citizens and professionals.",
+      "description": "Full-stack delivery on the public site: connecting editorial content to internal data and services, developing global microservices for asset delivery, shipping user-facing features end to end, and keeping releases aligned with strict accessibility and governance expectations.",
+      "url": "https://www.helsedirektoratet.no/",
+      "mainImage": "/projects/helsedirektoratet/1.png",
+      "gallery": [
+        "/projects/helsedirektoratet/2.png",
+        "/projects/helsedirektoratet/3.png",
+        "/projects/helsedirektoratet/4.png"
+      ],
+      "stack": [
+        "JavaScript",
+        "Enonic XP",
+        "Day.js",
+        "gulp.js",
+        "Webpack"
+      ],
+      "tags": [
+        "API integration",
+        "Data persistence",
+        "Authentication and authorization",
+        "Microservices",
+        "Complex data handling"
+      ]
     }
   ]
 }
