@@ -191,7 +191,7 @@ function tick(m: Mutable) {
   ) {
     m.ballY = PADDLE_Y - BALL_R
     const hit = (m.ballX - (m.paddleX + PADDLE_W / 2)) / (PADDLE_W / 2)
-    m.ballVy = -Math.abs(m.ballVy) - 0.3
+    m.ballVy = -Math.abs(m.ballVy)
     m.ballVx += hit * 4.4
     m.ballVx = Math.max(-12, Math.min(12, m.ballVx))
   }
@@ -200,21 +200,21 @@ function tick(m: Mutable) {
     for (let c = 0; c < BRICK_COLS; c++) {
       if (!m.bricks[r][c]) continue
       const { x, y, w, h } = brickRect(c, r)
-      if (
-        m.ballX + BALL_R > x &&
-        m.ballX - BALL_R < x + w &&
-        m.ballY + BALL_R > y &&
-        m.ballY - BALL_R < y + h
-      ) {
-        m.bricks[r][c] = false
-        m.score += 1
-        const cx = x + w / 2
-        const cy = y + h / 2
-        if (Math.abs(m.ballY - cy) > Math.abs(m.ballX - cx)) m.ballVy *= -1
-        else m.ballVx *= -1
-        m.ballVy *= 1.02
-        break brick
+      const overlapX = Math.min(m.ballX + BALL_R, x + w) - Math.max(m.ballX - BALL_R, x)
+      const overlapY = Math.min(m.ballY + BALL_R, y + h) - Math.max(m.ballY - BALL_R, y)
+      if (overlapX <= 0 || overlapY <= 0) continue
+      m.bricks[r][c] = false
+      m.score += 1
+      if (overlapX < overlapY) {
+        // Side collision — push ball out horizontally
+        m.ballVx *= -1
+        m.ballX = m.ballX < x + w / 2 ? x - BALL_R : x + w + BALL_R
+      } else {
+        // Top/bottom collision — push ball out vertically
+        m.ballVy *= -1
+        m.ballY = m.ballY < y + h / 2 ? y - BALL_R : y + h + BALL_R
       }
+      break brick
     }
   }
 
