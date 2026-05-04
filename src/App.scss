@@ -375,3 +375,18 @@ button.win95-titlebar__control {
     padding: calc(12px * var(--ui-scale));
   }
 }
+
+/* Cap window width as on a 1600px-wide viewport; center on ultra-wide screens. */
+@media (min-width: 1601px) {
+  .win95-window--app {
+    align-self: center;
+    width: min(
+      calc(1600px - (4rem * var(--ui-scale))),
+      calc(100% - (4rem * var(--ui-scale)))
+    );
+    margin-top: calc(1rem * var(--ui-scale));
+    margin-bottom: calc(1rem * var(--ui-scale));
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
