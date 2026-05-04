@@ -10,23 +10,25 @@
   border: 0;
 }
 
-.win95-window__body:has(.projects-layout) {
-  padding: 0;
+/* Projects: no Win95ScrollBox — scroll `main` natively; keep chrome black. */
+.win95-window__route-mount:has(.projects-layout),
+.win95-window__body--projects {
+  background: #000;
 }
 
-.routes__content:has(.projects-layout) {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
+.win95-window__body--projects {
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .projects-layout {
-  flex: 1;
-  min-height: 0;
-  min-width: 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
   text-align: left;
   background: #000;
   color: #e8eaed;
@@ -141,8 +143,6 @@
 }
 
 .projects-detail {
-  flex: 1;
-  min-height: 0;
   overflow: visible;
   padding: calc(20px * var(--ui-scale)) calc(22px * var(--ui-scale)) calc(36px * var(--ui-scale));
   max-width: calc(52rem * var(--ui-scale));
