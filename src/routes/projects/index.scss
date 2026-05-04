@@ -10,66 +10,7 @@
   border: 0;
 }
 
-/* Projects + Win95ScrollBox: black client area and dark scrollbar strip. */
-.win95-window__route-mount:has(.projects-layout) {
-  background: #000;
-}
-
-.win95-window__body:has(.projects-layout) {
-  background: #000;
-  padding: 0;
-}
-
-.routes:has(.projects-layout) {
-  background: #000;
-  border: 0;
-  box-shadow: none;
-}
-
-.routes__viewport:has(.projects-layout),
-.routes__content:has(.projects-layout) {
-  background: #000;
-}
-
-.routes__content:has(.projects-layout) {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  min-height: 100%;
-  overscroll-behavior-y: none;
-  text-align: left;
-}
-
-.routes:has(.projects-layout) .routes__scrollbar {
-  background: #0a0a0a;
-  border-left-color: #1f1f1f;
-}
-
-.routes:has(.projects-layout) .routes__scrollbar-btn {
-  background-color: #141414;
-  border-color: #2a2a2a #000 #000 #2a2a2a;
-  box-shadow: inset 1px 1px 0 #333;
-}
-
-.routes:has(.projects-layout) .routes__scrollbar-track {
-  background-color: #0a0a0a;
-  background-image: none;
-  border-color: #000 #1a1a1a #1a1a1a #000;
-}
-
-.routes:has(.projects-layout) .routes__scrollbar-thumb {
-  background-color: #222;
-  border-color: #3a3a3a #0a0a0a #0a0a0a #3a3a3a;
-  box-shadow: inset 1px 1px 0 #333;
-}
-
-.routes:has(.projects-layout) .routes__scrollbar-thumb:active,
-.routes:has(.projects-layout) .routes__scrollbar-thumb--dragging {
-  border-color: #050505 #383838 #383838 #050505;
-  box-shadow: inset 1px 1px 0 #2a2a2a;
-}
-
-/* Same dark scrollbar + client chrome as projects list (Win95ScrollBox inside fullscreen shell). */
+/* Fullscreen project detail only: dark client + scrollbar (list uses default Win95 routes chrome). */
 .projects-detail-fullscreen > .routes {
   flex: 1;
   min-height: 0;
@@ -121,6 +62,7 @@
   box-shadow: inset 1px 1px 0 #2a2a2a;
 }
 
+/* Projects list only: match Win95 routed pages (e.g. Education). Detail page keeps its own dark theme. */
 .projects-layout {
   flex: 1;
   min-height: 0;
@@ -130,8 +72,8 @@
   box-sizing: border-box;
   width: 100%;
   text-align: left;
-  background: #000;
-  color: #e8eaed;
+  background: transparent;
+  color: var(--win95-text);
 }
 
 .projects-list {
@@ -141,21 +83,22 @@
   overflow: visible;
   box-sizing: border-box;
   width: 100%;
-  padding: calc(20px * var(--ui-scale)) calc(22px * var(--ui-scale)) calc(32px * var(--ui-scale));
+  padding: 0;
 }
 
 .projects-list__heading {
-  margin: 0 0 calc(20px * var(--ui-scale));
-  font-size: calc(1.75rem * var(--ui-scale));
-  font-weight: 650;
-  letter-spacing: -0.02em;
-  color: #f1f5f9;
+  margin: 0 0 calc(16px * var(--ui-scale));
+  font-size: calc(17px * var(--ui-scale));
+  font-weight: bold;
+  letter-spacing: 0;
+  color: var(--win95-text);
+  font-family: var(--heading);
 }
 
 .projects-list__grid {
   display: flex;
   flex-direction: column;
-  gap: calc(14px * var(--ui-scale));
+  gap: calc(12px * var(--ui-scale));
   margin: 0;
   padding: 0;
   list-style: none;
@@ -169,34 +112,31 @@
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  gap: calc(18px * var(--ui-scale));
-  min-height: calc(176px * var(--ui-scale));
+  gap: calc(12px * var(--ui-scale));
+  min-height: calc(168px * var(--ui-scale));
   width: 100%;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 8px 24px rgba(0, 0, 0, 0.45);
-  background: #111827;
-  color: inherit;
+  border: calc(2px * var(--ui-scale)) solid;
+  border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+    var(--win95-border-light);
+  box-shadow: calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 var(--win95-border-mid);
+  background: var(--win95-face);
+  color: var(--win95-text);
   text-decoration: none;
   outline: none;
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease,
-    border-color 0.2s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.14);
+    border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+      var(--win95-border-light);
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.06) inset,
-      0 12px 36px rgba(0, 0, 0, 0.55);
-    transform: translateY(calc(-2px * var(--ui-scale)));
+      calc(1px * var(--ui-scale)) calc(1px * var(--ui-scale)) 0 var(--win95-border-mid),
+      0 0 0 1px rgba(0, 0, 0, 0.06);
   }
 
   &:focus-visible {
-    outline: 2px solid #38bdf8;
-    outline-offset: 3px;
+    outline: 2px solid var(--win95-link);
+    outline-offset: 2px;
   }
 }
 
@@ -204,8 +144,10 @@
   flex-shrink: 0;
   width: calc(220px * var(--ui-scale));
   align-self: stretch;
-  min-height: calc(176px * var(--ui-scale));
-  background: #0f172a;
+  min-height: calc(168px * var(--ui-scale));
+  background: var(--win95-field-bg);
+  border: 0;
+  border-right: calc(2px * var(--ui-scale)) solid var(--win95-border-shadow);
   overflow: hidden;
 }
 
@@ -223,22 +165,22 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  text-align: right;
-  padding: calc(18px * var(--ui-scale)) calc(20px * var(--ui-scale)) calc(18px * var(--ui-scale))
-    calc(10px * var(--ui-scale));
+  text-align: left;
+  padding: calc(14px * var(--ui-scale)) calc(16px * var(--ui-scale)) calc(14px * var(--ui-scale))
+    calc(4px * var(--ui-scale));
   gap: calc(4px * var(--ui-scale));
 }
 
 .projects-list__name {
-  font-weight: 600;
+  font-weight: bold;
   font-size: calc(16px * var(--ui-scale));
   line-height: 1.25;
-  color: #f1f5f9;
+  color: var(--win95-text);
 }
 
 .projects-list__year {
   font-size: calc(14px * var(--ui-scale));
-  color: #94a3b8;
+  color: var(--win95-border-shadow);
 }
 
 /* Full-viewport project case: no Win95 chrome (routed outside the main window in App.tsx). */
@@ -461,9 +403,5 @@
 @media (prefers-reduced-motion: reduce) {
   .projects-list__tile {
     transition: none;
-  }
-
-  .projects-list__tile:hover {
-    transform: none;
   }
 }
