@@ -91,118 +91,139 @@ function GameTitlebarIcon() {
   )
 }
 
+type DesktopWindowSwitcherProps = {
+  activeWindow: ActiveWindow
+  setActiveWindow: (w: ActiveWindow) => void
+}
+
+function DesktopWindowSwitcher({ activeWindow, setActiveWindow }: DesktopWindowSwitcherProps) {
+  const navigate = useNavigate()
+
+  return activeWindow === 'portfolio' ? (
+    <div className="win95-window win95-window--app">
+      <div className="win95-titlebar">
+        <img
+          className="win95-titlebar__icon"
+          src="/profile_picture.jpeg"
+          alt=""
+          width={27}
+          height={27}
+          decoding="async"
+        />
+        <span className="win95-titlebar__text">reinaldo_portfolio.exe</span>
+        <div className="win95-titlebar__controls">
+          <button
+            type="button"
+            className="win95-titlebar__control"
+            aria-label="Minimize"
+            onClick={() => setActiveWindow(null)}
+          >
+            _
+          </button>
+          <span className="win95-titlebar__control win95-titlebar__control--disabled" aria-hidden="true">
+            □
+          </span>
+          <button
+            type="button"
+            className="win95-titlebar__control win95-titlebar__control--close"
+            aria-label="Close"
+            onClick={() => setActiveWindow(null)}
+          >
+            ×
+          </button>
+        </div>
+      </div>
+      <NavBar />
+      <div className="win95-window__route-mount">
+        <Routes>
+          <Route element={<BodySwitcher />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/education" element={<EducationPage />} />
+            <Route path="/background" element={<BackgroundPage />} />
+            <Route path="/projects" element={<ProjectsLayout />}>
+              <Route index element={<ProjectsListPage />} />
+            </Route>
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
+        </Routes>
+      </div>
+    </div>
+  ) : activeWindow === 'game' ? (
+    <div className="win95-window win95-window--app win95-window--game">
+      <div className="win95-titlebar">
+        <GameTitlebarIcon />
+        <span className="win95-titlebar__text">Play a game!.exe</span>
+        <div className="win95-titlebar__controls">
+          <button
+            type="button"
+            className="win95-titlebar__control"
+            aria-label="Minimize"
+            onClick={() => setActiveWindow(null)}
+          >
+            _
+          </button>
+          <span className="win95-titlebar__control win95-titlebar__control--disabled" aria-hidden="true">
+            □
+          </span>
+          <button
+            type="button"
+            className="win95-titlebar__control win95-titlebar__control--close"
+            aria-label="Close"
+            onClick={() => setActiveWindow(null)}
+          >
+            ×
+          </button>
+        </div>
+      </div>
+      <main className="win95-window__body win95-window__body--game">
+        <PacketBreakerGame />
+      </main>
+    </div>
+  ) : (
+    <div className="win95-desktop-icons">
+      <div className="win95-desktop-icons__row">
+        <button
+          type="button"
+          className="win95-desktop-shortcut"
+          onClick={() => {
+            navigate('/')
+            setActiveWindow('portfolio')
+          }}
+        >
+          <span className="win95-desktop-shortcut__graphic" aria-hidden="true">
+            <DesktopExeIcon />
+          </span>
+          <span className="win95-desktop-shortcut__label">reinaldo_portfolio.exe</span>
+        </button>
+        <button type="button" className="win95-desktop-shortcut" onClick={() => setActiveWindow('game')}>
+          <span className="win95-desktop-shortcut__graphic" aria-hidden="true">
+            <DesktopGameExeIcon />
+          </span>
+          <span className="win95-desktop-shortcut__label">Play a game!.exe</span>
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function App() {
   const [activeWindow, setActiveWindow] = useState<ActiveWindow>('portfolio')
-  const navigate = useNavigate()
 
   return (
     <div className="win95-desktop">
-      {activeWindow === 'portfolio' ? (
-        <div className="win95-window win95-window--app">
-          <div className="win95-titlebar">
-            <img
-              className="win95-titlebar__icon"
-              src="/profile_picture.jpeg"
-              alt=""
-              width={27}
-              height={27}
-              decoding="async"
-            />
-            <span className="win95-titlebar__text">reinaldo_portfolio.exe</span>
-            <div className="win95-titlebar__controls">
-              <button
-                type="button"
-                className="win95-titlebar__control"
-                aria-label="Minimize"
-                onClick={() => setActiveWindow(null)}
-              >
-                _
-              </button>
-              <span className="win95-titlebar__control win95-titlebar__control--disabled" aria-hidden="true">
-                □
-              </span>
-              <button
-                type="button"
-                className="win95-titlebar__control win95-titlebar__control--close"
-                aria-label="Close"
-                onClick={() => setActiveWindow(null)}
-              >
-                ×
-              </button>
+      <Routes>
+        <Route
+          path="/projects/:slug"
+          element={
+            <div className="projects-detail-fullscreen">
+              <Win95ScrollBox>
+                <ProjectDetailPage />
+              </Win95ScrollBox>
             </div>
-          </div>
-          <NavBar />
-          <div className="win95-window__route-mount">
-            <Routes>
-              <Route element={<BodySwitcher />}>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/education" element={<EducationPage />} />
-                <Route path="/background" element={<BackgroundPage />} />
-                <Route path="/projects" element={<ProjectsLayout />}>
-                  <Route index element={<ProjectsListPage />} />
-                  <Route path=":slug" element={<ProjectDetailPage />} />
-                </Route>
-                <Route path="/contact" element={<ContactPage />} />
-              </Route>
-            </Routes>
-          </div>
-        </div>
-      ) : activeWindow === 'game' ? (
-        <div className="win95-window win95-window--app win95-window--game">
-          <div className="win95-titlebar">
-            <GameTitlebarIcon />
-            <span className="win95-titlebar__text">Play a game!.exe</span>
-            <div className="win95-titlebar__controls">
-              <button
-                type="button"
-                className="win95-titlebar__control"
-                aria-label="Minimize"
-                onClick={() => setActiveWindow(null)}
-              >
-                _
-              </button>
-              <span className="win95-titlebar__control win95-titlebar__control--disabled" aria-hidden="true">
-                □
-              </span>
-              <button
-                type="button"
-                className="win95-titlebar__control win95-titlebar__control--close"
-                aria-label="Close"
-                onClick={() => setActiveWindow(null)}
-              >
-                ×
-              </button>
-            </div>
-          </div>
-          <main className="win95-window__body win95-window__body--game">
-            <PacketBreakerGame />
-          </main>
-        </div>
-      ) : (
-        <div className="win95-desktop-icons">
-          <div className="win95-desktop-icons__row">
-            <button
-              type="button"
-              className="win95-desktop-shortcut"
-              onClick={() => {
-                navigate('/')
-                setActiveWindow('portfolio')
-              }}
-            >
-              <span className="win95-desktop-shortcut__graphic" aria-hidden="true">
-                <DesktopExeIcon />
-              </span>
-              <span className="win95-desktop-shortcut__label">reinaldo_portfolio.exe</span>
-            </button>
-            <button type="button" className="win95-desktop-shortcut" onClick={() => setActiveWindow('game')}>
-              <span className="win95-desktop-shortcut__graphic" aria-hidden="true">
-                <DesktopGameExeIcon />
-              </span>
-              <span className="win95-desktop-shortcut__label">Play a game!.exe</span>
-            </button>
-          </div>
-        </div>
-      )}
+          }
+        />
+        <Route path="*" element={<DesktopWindowSwitcher activeWindow={activeWindow} setActiveWindow={setActiveWindow} />} />
+      </Routes>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { getProjectBySlug } from '../../data/projectsData'
+import './index.scss'
 
 export default function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -16,6 +17,8 @@ export default function ProjectDetailPage() {
     )
   }
 
+  const images = [project.mainImage, ...project.gallery]
+
   return (
     <article className="projects-detail">
       <nav className="projects-detail__nav">
@@ -28,20 +31,35 @@ export default function ProjectDetailPage() {
         <p className="projects-detail__meta">{project.year}</p>
         <p className="projects-detail__summary">{project.summary}</p>
         <p className="projects-detail__description">{project.description}</p>
-        <p className="projects-detail__link-wrap">
-          <a className="projects-detail__external" href={project.url} target="_blank" rel="noreferrer">
-            {project.url}
+        <div className="projects-detail__cta-wrap">
+          <a
+            className="projects-detail__demo"
+            href={project.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`View live demo: ${project.url}`}
+          >
+            <svg
+              className="projects-detail__demo-icon"
+              width={16}
+              height={16}
+              viewBox="0 0 24 24"
+              aria-hidden
+              focusable="false"
+            >
+              <path
+                fill="currentColor"
+                d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+              />
+            </svg>
+            <span>View Live Demo</span>
           </a>
-        </p>
+        </div>
       </header>
-      <section className="projects-detail__hero" aria-label="Main preview">
-        <img className="projects-detail__hero-img" src={project.mainImage} alt="" width={960} height={960} />
-      </section>
-      {project.gallery.length > 0 ? (
+      {images.length > 0 ? (
         <section className="projects-detail__gallery" aria-label="More images">
-          <h2 className="projects-detail__gallery-title">Gallery</h2>
-          <ul className="projects-detail__gallery-grid">
-            {project.gallery.map((src, i) => (
+          <ul className="projects-detail__gallery-list">
+            {images.map((src, i) => (
               <li key={src} className="projects-detail__gallery-item">
                 <img src={src} alt={`${project.name} — image ${i + 1}`} width={960} height={540} />
               </li>

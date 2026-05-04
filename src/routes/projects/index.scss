@@ -69,6 +69,58 @@
   box-shadow: inset 1px 1px 0 #2a2a2a;
 }
 
+/* Same dark scrollbar + client chrome as projects list (Win95ScrollBox inside fullscreen shell). */
+.projects-detail-fullscreen > .routes {
+  flex: 1;
+  min-height: 0;
+  background: #000;
+  border: 0;
+  box-shadow: none;
+}
+
+.projects-detail-fullscreen .routes__viewport,
+.projects-detail-fullscreen .routes__content {
+  background: #000;
+}
+
+.projects-detail-fullscreen .routes__content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  min-height: 100%;
+  overscroll-behavior-y: none;
+  text-align: left;
+}
+
+.projects-detail-fullscreen .routes__scrollbar {
+  background: #0a0a0a;
+  border-left-color: #1f1f1f;
+}
+
+.projects-detail-fullscreen .routes__scrollbar-btn {
+  background-color: #141414;
+  border-color: #2a2a2a #000 #000 #2a2a2a;
+  box-shadow: inset 1px 1px 0 #333;
+}
+
+.projects-detail-fullscreen .routes__scrollbar-track {
+  background-color: #0a0a0a;
+  background-image: none;
+  border-color: #000 #1a1a1a #1a1a1a #000;
+}
+
+.projects-detail-fullscreen .routes__scrollbar-thumb {
+  background-color: #222;
+  border-color: #3a3a3a #0a0a0a #0a0a0a #3a3a3a;
+  box-shadow: inset 1px 1px 0 #333;
+}
+
+.projects-detail-fullscreen .routes__scrollbar-thumb:active,
+.projects-detail-fullscreen .routes__scrollbar-thumb--dragging {
+  border-color: #050505 #383838 #383838 #050505;
+  box-shadow: inset 1px 1px 0 #2a2a2a;
+}
+
 .projects-layout {
   flex: 1;
   min-height: 0;
@@ -189,30 +241,77 @@
   color: #94a3b8;
 }
 
+/* Full-viewport project case: no Win95 chrome (routed outside the main window in App.tsx). */
+.projects-detail-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: #0a0a0a;
+}
+
 .projects-detail {
   overflow: visible;
   padding: calc(20px * var(--ui-scale)) calc(22px * var(--ui-scale)) calc(36px * var(--ui-scale));
-  max-width: calc(52rem * var(--ui-scale));
+  max-width: calc(38rem * var(--ui-scale));
   margin: 0 auto;
   width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
 }
 
 .projects-detail__nav {
   margin-bottom: calc(16px * var(--ui-scale));
 }
 
+/* Same default / hover / active as win95-menu-bar links (see NavBar/index.scss). */
 .projects-detail__back {
-  color: #7dd3fc;
+  display: inline-block;
+  padding: calc(6px * var(--ui-scale)) calc(12px * var(--ui-scale));
   font-size: calc(14px * var(--ui-scale));
+  font-family: var(--sans);
   font-weight: 500;
+  color: var(--win95-text);
   text-decoration: none;
+  background: var(--win95-face);
+  border: calc(2px * var(--ui-scale)) solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: none;
 
   &:hover {
-    text-decoration: underline;
+    background: var(--win95-face);
+    color: var(--win95-text);
+    border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+      var(--win95-border-light);
+  }
+
+  &:active {
+    border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
+      var(--win95-border-dark);
+    padding: calc(5px * var(--ui-scale)) calc(9px * var(--ui-scale)) calc(3px * var(--ui-scale))
+      calc(11px * var(--ui-scale));
+    box-shadow: none;
+    background: var(--win95-face);
+    color: var(--win95-text);
   }
 
   &:visited {
-    color: #c4b5fd;
+    color: var(--win95-text);
+  }
+
+  &:visited:hover {
+    color: var(--win95-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
   }
 }
 
@@ -244,18 +343,56 @@
   color: #94a3b8;
 }
 
-.projects-detail__link-wrap {
+.projects-detail__cta-wrap {
   margin: 0 0 calc(22px * var(--ui-scale));
 }
 
-.projects-detail__external {
-  color: #7dd3fc;
-  word-break: break-all;
-  font-size: calc(14px * var(--ui-scale));
+.projects-detail__demo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(6px * var(--ui-scale));
+  padding: calc(7px * var(--ui-scale)) calc(14px * var(--ui-scale));
+  font-family: var(--sans);
+  font-size: calc(13px * var(--ui-scale));
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-decoration: none;
+  background: #6b7280;
+  border: none;
+  border-radius: 999px;
+  box-shadow: none;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--win95-highlight);
+    color: var(--win95-highlight-text);
+  }
+
+  &:active {
+    background: #5b616b;
+    transform: scale(0.98);
+  }
 
   &:visited {
-    color: #c4b5fd;
+    color: #fff;
   }
+
+  &:visited:hover {
+    color: var(--win95-highlight-text);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #cbd5e1;
+    outline-offset: 3px;
+  }
+}
+
+.projects-detail__demo-icon {
+  flex-shrink: 0;
+  display: block;
+  color: inherit;
 }
 
 .projects-detail__hero {
@@ -276,6 +413,12 @@
   margin: 0 auto;
 }
 
+.projects-detail__gallery {
+  max-width: 100%;
+  margin-inline: auto;
+  width: 100%;
+}
+
 .projects-detail__gallery-title {
   margin: 0 0 calc(12px * var(--ui-scale));
   font-size: calc(1.1rem * var(--ui-scale));
@@ -283,17 +426,14 @@
   color: #f1f5f9;
 }
 
-.projects-detail__gallery-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+.projects-detail__gallery-list {
+  display: flex;
+  flex-direction: column;
   gap: calc(14px * var(--ui-scale));
   margin: 0;
   padding: 0;
   list-style: none;
-
-  @media (min-width: 720px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  width: 100%;
 }
 
 .projects-detail__gallery-item {
@@ -308,6 +448,7 @@
 .projects-detail__gallery-item img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
 }
