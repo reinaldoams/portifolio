@@ -21,7 +21,7 @@
 
 .projects-detail-fullscreen .routes__viewport,
 .projects-detail-fullscreen .routes__content {
-  background: var(--win95-face);
+  background: black;
 }
 
 .projects-detail-fullscreen .routes__content {
@@ -241,7 +241,7 @@
 
 .projects-detail {
   overflow: visible;
-  padding: calc(20px * var(--ui-scale)) calc(22px * var(--ui-scale)) calc(36px * var(--ui-scale));
+  padding: 0 calc(22px * var(--ui-scale)) calc(36px * var(--ui-scale));
   max-width: calc(38rem * var(--ui-scale));
   margin: 0 auto;
   width: 100%;
@@ -262,9 +262,13 @@
   position: sticky;
   top: 0;
   z-index: 2;
-  margin-bottom: calc(16px * var(--ui-scale));
-  padding-bottom: calc(10px * var(--ui-scale));
-  background: var(--win95-face);
+  margin-left: calc(-22px * var(--ui-scale));
+  margin-right: calc(-22px * var(--ui-scale));
+  padding-top: calc(10px * var(--ui-scale));
+  padding-bottom: calc(22px * var(--ui-scale));
+  padding-left: calc(22px * var(--ui-scale));
+  padding-right: calc(22px * var(--ui-scale));
+  background: var(--win95-gray-bg);
   box-shadow: 0 calc(1px * var(--ui-scale)) 0 var(--win95-border-mid);
 }
 
@@ -544,9 +548,9 @@
   display: flex;
   justify-content: space-between;
   max-width: calc(38rem * var(--ui-scale));
-  margin: 0 auto 1rem auto;
+  margin: 0 auto;
   width: 100%;
-  padding: 0 calc(22px * var(--ui-scale));
+  padding: 1rem 0;
   box-sizing: border-box;
   color: var(--win95-text-gray);
 }
