@@ -392,6 +392,31 @@ button.win95-titlebar__control {
   }
 }
 
+@media (max-width: 780px) {
+  .win95-window--app {
+    border-width: calc(1px * var(--ui-scale));
+    box-shadow: none;
+  }
+
+  .win95-window__body {
+    padding: calc(8px * var(--ui-scale));
+  }
+
+  .routes {
+    border-width: calc(1px * var(--ui-scale));
+  }
+
+  .routes__content {
+    padding: calc(10px * var(--ui-scale));
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: auto;
+  }
+
+  .routes__scrollbar {
+    display: none;
+  }
+}
+
 /* Cap window width as on a 1600px-wide viewport; center on ultra-wide screens. */
 @media (min-width: 1601px) {
   .win95-window--app {
