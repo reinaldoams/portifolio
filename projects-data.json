@@ -4,7 +4,7 @@
       "slug": "portfolio-leticia",
       "name": "Product Designer Website",
       "year": "2026 - now",
-      "summary": "Portfolio and brand site for an independent product designer.",
+      "summary": "Portfolio fullstack project for an independent product designer, featuring a custom CMS with image upload and an email-sending contact form.",
       "description": "Collaborative build from layout to launch: expressive visuals, clear case-study structure, and a deployable production site tuned for performance and easy updates.",
       "url": "https://portifolio-leticia-three.vercel.app/",
       "mainImage": "/projects/leticia-santoro-portfolio/1.png",
@@ -18,12 +18,15 @@
         "Next.js",
         "React",
         "Tailwind",
-        "TypeScript"
+        "TypeScript",
+        "Supabase",
+        "Resend"
       ],
       "tags": [
-        "State management",
         "React Context",
         "Email sending",
+        "Custom CMS",
+        "Image upload",
         "i18n",
         "Responsive design"
       ]
