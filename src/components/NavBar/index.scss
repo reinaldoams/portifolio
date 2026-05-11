@@ -1,12 +1,22 @@
 nav.win95-menu-bar {
   flex-shrink: 0;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: calc(4px * var(--ui-scale));
   padding: calc(6px * var(--ui-scale)) calc(8px * var(--ui-scale));
   background: var(--win95-face);
   border-bottom: calc(1px * var(--ui-scale)) solid var(--win95-border-shadow);
+
+  .win95-menu-bar__toggle {
+    display: none;
+  }
+
+  .win95-menu-bar__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(4px * var(--ui-scale));
+  }
 
   a {
     display: inline-block;
@@ -46,8 +56,67 @@ nav.win95-menu-bar {
   }
 
   @media (max-width: 780px) {
-    flex-direction: column;
+    flex-direction: row;
     align-items: stretch;
+    position: relative;
+    min-height: calc(42px * var(--ui-scale));
+
+    .win95-menu-bar__toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: calc(6px * var(--ui-scale));
+      right: calc(8px * var(--ui-scale));
+      padding: calc(4px * var(--ui-scale)) calc(10px * var(--ui-scale));
+      font: inherit;
+      font-size: calc(16px * var(--ui-scale));
+      line-height: 1;
+      color: var(--win95-text);
+      background: var(--win95-face);
+      border: calc(2px * var(--ui-scale)) solid;
+      border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
+        var(--win95-border-light);
+      cursor: pointer;
+      appearance: none;
+
+      &:active {
+        border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
+          var(--win95-border-dark);
+      }
+    }
+
+    .win95-menu-bar__toggle-close {
+      display: inline-block;
+      font-size: calc(13px * var(--ui-scale));
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .win95-menu-bar__toggle-icon {
+      display: inline-flex;
+      flex-direction: column;
+      gap: calc(3px * var(--ui-scale));
+
+      span {
+        display: block;
+        width: calc(16px * var(--ui-scale));
+        height: calc(2px * var(--ui-scale));
+        background: var(--win95-text);
+      }
+    }
+
+    .win95-menu-bar__links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      margin-top: 0;
+    }
+
+    .win95-menu-bar__links.is-open {
+      display: flex;
+    }
 
     a {
       width: 100%;

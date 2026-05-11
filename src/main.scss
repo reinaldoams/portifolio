@@ -117,18 +117,6 @@ img {
 
 @media (max-width: 1024px) {
   :root {
-    --ui-scale: 1.2;
-  }
-}
-
-@media (max-width: 780px) {
-  :root {
-    --ui-scale: 1;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --ui-scale: 0.92;
+    --ui-scale: 1.3;
   }
 }

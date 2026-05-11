@@ -573,10 +573,8 @@
     font-size: calc(1.45rem * var(--ui-scale));
   }
 
-  .projects-list__footer {
-    flex-direction: column;
-    gap: calc(4px * var(--ui-scale));
-    padding: calc(12px * var(--ui-scale)) 0;
+  footer.projects-list__footer {
+    padding: calc(12px * var(--ui-scale)) calc(12px * var(--ui-scale));
   }
 }
 
