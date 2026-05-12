@@ -119,7 +119,7 @@ function draw(ctx: CanvasRenderingContext2D, m: Mutable) {
   ctx.stroke()
 
   ctx.fillStyle = '#8892b0'
-  ctx.font = '22px sans-serif'
+  ctx.font = '32px sans-serif'
   ctx.textAlign = 'left'
   ctx.fillText(`Packets cleared: ${m.score}`, 16, 32)
 

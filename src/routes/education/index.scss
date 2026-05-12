@@ -11,6 +11,7 @@
   margin-bottom: calc(8px * var(--ui-scale));
   padding: calc(2px * var(--ui-scale)) 0;
   border-bottom: calc(1px * var(--ui-scale)) solid var(--win95-border-shadow);
+  text-align: left;
 }
 
 .education-page ul {
@@ -44,6 +45,8 @@
   }
 
   .education-item__text {
+    text-align: left;
+
     .course {
       font-size: calc(15px * var(--ui-scale));
       font-weight: bold;
@@ -69,7 +72,7 @@
 
 .education-page__certs li .education-item__text {
   flex: 1;
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 900px) {
@@ -84,14 +87,14 @@
   }
 }
 
-@media (max-width: 415px) {
+@media (max-width: 780px) {
   .education-page li {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 
     img {
-      margin: 0 0 calc(10px * var(--ui-scale)) 0;
-      align-self: flex-start;
+      margin: 0 auto calc(10px * var(--ui-scale));
+      align-self: center;
     }
 
     .education-item__text {

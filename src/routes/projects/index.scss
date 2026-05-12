@@ -327,6 +327,10 @@
   letter-spacing: -0.02em;
   color: var(--win95-text);
   text-transform: uppercase;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .projects-detail__meta {
