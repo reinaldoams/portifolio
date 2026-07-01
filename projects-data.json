@@ -1,6 +1,37 @@
 {
   "projects": [
     {
+      "slug": "metodoreferenciasimplifica",
+      "name": "Metodo Referência Simplifica",
+      "year": "2026 - now",
+      "summary": "Metodo Referência Simplifica",
+      "description": "Metodo Referência Simplifica",
+      "url": "https://metodoreferenciasimplifica.com/",
+      "mainImage": "/projects/metodoreferenciasimplifica/1.png",
+      "gallery": [
+        "/projects/metodoreferenciasimplifica/2.png",
+        "/projects/metodoreferenciasimplifica/3.png",
+        "/projects/metodoreferenciasimplifica/4.png"
+      ],
+      "stack": [
+        "Astro",
+        "SolidJS",
+        "Tailwind",
+        "TypeScript",
+        "Supabase",
+        "Pix Utils"
+      ],
+      "tags": [
+        "Frontend",
+        "Backend",
+        "Fullstack",
+        "Astro Islands",
+        "Signals",
+        "i18n",
+        "Payment processing"
+      ]
+    },
+    {
       "slug": "portfolio-leticia",
       "name": "Product Designer Website",
       "year": "2026 - now",
