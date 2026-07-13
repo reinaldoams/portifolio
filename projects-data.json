@@ -4,8 +4,9 @@
       "slug": "metodoreferenciasimplifica",
       "name": "Metodo Referência Simplifica",
       "year": "2026 - now",
-      "summary": "Metodo Referência Simplifica",
-      "description": "Metodo Referência Simplifica",
+      "summary": "Free music-theory method that teaches string instruments through visual references, fretboard maps, and interactive practice tools.",
+      "description": "Full-stack build of a bilingual learning site: Astro islands with Solid signals for interactive note and scale finders, structured method content, and Pix-based donation support — focused on making theory stick as muscle memory on the fretboard.",
+
       "url": "https://metodoreferenciasimplifica.com/",
       "mainImage": "/projects/metodoreferenciasimplifica/1.png",
       "gallery": [
