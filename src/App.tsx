@@ -24,51 +24,44 @@ function BodySwitcher() {
   )
 }
 
-/** Win95-style .exe icon: miniature app window (beveled frame, navy title bar, three control pixels). */
+/** Glassy portfolio shortcut icon: a compact window with a few interface details. */
 function DesktopExeIcon() {
   return (
     <svg
       className="win95-desktop-shortcut__svg"
       viewBox="0 0 32 32"
-      shapeRendering="crispEdges"
       aria-hidden
       focusable="false"
     >
-      <rect x="3" y="3" width="26" height="26" fill="#000000" />
-      <rect x="4" y="4" width="24" height="1" fill="#ffffff" />
-      <rect x="5" y="4" width="22" height="1" fill="#c0c0c0" />
-      <rect x="4" y="5" width="1" height="22" fill="#ffffff" />
-      <rect x="27" y="5" width="1" height="22" fill="#808080" />
-      <rect x="4" y="27" width="24" height="1" fill="#808080" />
-      <rect x="5" y="5" width="22" height="5" fill="#000080" />
-      <rect x="5" y="10" width="22" height="17" fill="#ffffff" />
-      <rect x="17.5" y="6.5" width="2" height="2" fill="#ffffff" />
-      <rect x="21" y="6.5" width="2" height="2" fill="#ffffff" />
-      <rect x="24" y="6.5" width="2" height="2" fill="#ffffff" />
+      <defs>
+        <linearGradient id="portfolio-shortcut-gradient" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stopColor="#9deeff" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#a897ff" stopOpacity="0.72" />
+        </linearGradient>
+      </defs>
+      <rect x="4" y="5" width="24" height="22" rx="6" fill="url(#portfolio-shortcut-gradient)" opacity="0.42" />
+      <rect x="4" y="5" width="24" height="22" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M5.5 11.5h21" stroke="currentColor" strokeOpacity="0.7" strokeWidth="1.2" />
+      <circle cx="9" cy="8.5" r="1" fill="#9deeff" />
+      <circle cx="12.5" cy="8.5" r="1" fill="#c4b4ff" />
+      <path d="M9 17h9M9 21h13" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
     </svg>
   )
 }
 
-/** Desktop shortcut icon: retro CRT with a “sprite” — suggests a playable toy. */
+/** Desktop shortcut icon for the small playable experiment. */
 function DesktopGameExeIcon() {
   return (
     <svg
       className="win95-desktop-shortcut__svg"
       viewBox="0 0 32 32"
-      shapeRendering="crispEdges"
       aria-hidden
       focusable="false"
     >
-      <rect x="5" y="5" width="22" height="18" fill="#2a2a2a" stroke="#000" strokeWidth="1" />
-      <rect x="7" y="7" width="18" height="12" fill="#0a1628" />
-      <rect x="9" y="9" width="3" height="3" fill="#39ff14" />
-      <rect x="13" y="9" width="5" height="2" fill="#ffaa00" />
-      <rect x="20" y="9" width="3" height="3" fill="#00d4ff" />
-      <rect x="9" y="13" width="14" height="2" fill="#ffff00" />
-      <rect x="10" y="16" width="4" height="1" fill="#fff" />
-      <rect x="15" y="16" width="6" height="1" fill="#fff" />
-      <rect x="13" y="24" width="6" height="3" fill="#808080" />
-      <rect x="11" y="27" width="10" height="2" fill="#606060" />
+      <rect x="4" y="5" width="24" height="19" rx="6" fill="#081329" fillOpacity="0.76" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M8 10h16M8 14h5M8 18h9" stroke="#8fe8ff" strokeLinecap="round" strokeWidth="1.5" />
+      <circle cx="22" cy="14" r="2.2" fill="#b693ff" />
+      <path d="M13 24v3M19 24v3M10 27h12" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
     </svg>
   )
 }
@@ -78,16 +71,13 @@ function GameTitlebarIcon() {
     <svg
       className="win95-titlebar__icon win95-titlebar__icon--game"
       viewBox="0 0 18 18"
-      shapeRendering="crispEdges"
       aria-hidden
       focusable="false"
     >
-      <rect x="1" y="2" width="16" height="12" fill="#2a2a2a" />
-      <rect x="3" y="4" width="12" height="8" fill="#051018" />
-      <rect x="5" y="6" width="2" height="2" fill="#3f3" />
-      <rect x="8" y="6" width="4" height="1" fill="#fa0" />
-      <rect x="5" y="9" width="8" height="1" fill="#6cf" />
-      <rect x="7" y="14" width="4" height="2" fill="#888" />
+      <rect x="1.5" y="2" width="15" height="11" rx="3" fill="#081329" fillOpacity="0.76" stroke="currentColor" strokeWidth="1" />
+      <path d="M4.5 6h5M4.5 9h3" stroke="#8fe8ff" strokeLinecap="round" strokeWidth="1" />
+      <circle cx="13" cy="7" r="1.4" fill="#b693ff" />
+      <path d="M7 14v2M11 14v2M5 16h8" stroke="currentColor" strokeLinecap="round" strokeWidth="1" />
     </svg>
   )
 }

@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import './index.scss'
 
 function NavBar() {
   const { pathname } = useLocation()
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  useEffect(() => {
-    setIsMenuOpen(false)
-  }, [pathname])
+  const [menuState, setMenuState] = useState({ pathname, isOpen: false })
+  const isMenuOpen = menuState.pathname === pathname && menuState.isOpen
 
   function closeMenu() {
-    setIsMenuOpen(false)
+    setMenuState({ pathname, isOpen: false })
   }
 
   return (
@@ -22,7 +19,7 @@ function NavBar() {
         aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
         aria-controls="primary-navigation"
         aria-expanded={isMenuOpen}
-        onClick={() => setIsMenuOpen((prev) => !prev)}
+        onClick={() => setMenuState({ pathname, isOpen: !isMenuOpen })}
       >
         {isMenuOpen ? (
           <span className="win95-menu-bar__toggle-close" aria-hidden="true">

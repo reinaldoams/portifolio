@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react'
+import { createPortal } from 'react-dom'
 import './index.scss'
 
 const EMAIL = 'reinaldoams@gmail.com'
@@ -17,7 +18,7 @@ function IconGithub() {
         viewBox="0 0 16 16"
         preserveAspectRatio="xMidYMid meet"
       >
-        <path fill="#000" d={GITHUB_MARK_16_PATH} />
+        <path fill="currentColor" d={GITHUB_MARK_16_PATH} />
       </svg>
   )
 }
@@ -30,13 +31,13 @@ function IconLinkedin() {
       aria-hidden
       focusable="false"
     >
-      <rect x="5" y="5" width="22" height="22" fill="#c0c0c0" stroke="#000" strokeWidth="1" />
+      <rect x="5" y="5" width="22" height="22" rx="5" fill="currentColor" fillOpacity="0.12" stroke="currentColor" strokeWidth="1.2" />
       <text
         x="16"
         y="19"
         textAnchor="middle"
         dominantBaseline="middle"
-        fill="#000"
+        fill="currentColor"
         fontFamily="Tahoma, MS Sans Serif, sans-serif"
         fontSize="22"
         fontWeight="700"
@@ -55,8 +56,8 @@ function IconMail() {
       aria-hidden
       focusable="false"
     >
-      <rect x="3" y="9" width="26" height="16" fill="#c0c0c0" stroke="#000" strokeWidth="1" />
-      <path fill="none" stroke="#000" strokeWidth="1" d="M3 9 L16 19 L29 9" />
+      <rect x="3" y="9" width="26" height="16" rx="4" fill="currentColor" fillOpacity="0.12" stroke="currentColor" strokeWidth="1.2" />
+      <path fill="none" stroke="currentColor" strokeWidth="1.2" d="M3 10 L16 19 L29 10" />
     </svg>
   )
 }
@@ -131,16 +132,19 @@ function ContactPage() {
           </span>
         </button>
       </div>
-      {copyToast ? (
-        <span
-          key={copyToast.id}
-          className="contact-copy-toast"
-          style={{ left: copyToast.x, top: copyToast.y }}
-          role="status"
-        >
-          Copied
-        </span>
-      ) : null}
+      {copyToast
+        ? createPortal(
+            <span
+              key={copyToast.id}
+              className="contact-copy-toast"
+              style={{ left: copyToast.x, top: copyToast.y }}
+              role="status"
+            >
+              Copied
+            </span>,
+            document.body,
+          )
+        : null}
     </div>
   )
 }

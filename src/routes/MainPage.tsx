@@ -6,29 +6,24 @@ import './MainPage.scss'
 const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000
 const INDUSTRY_START = new Date(2021, 8, 1) // September 2021 (month 0-based)
 
-/** Win95-style folder with document lines (projects). */
+/** Projects shortcut icon. */
 function IconProjects() {
   return (
     <svg
       className="contact-icon-item__svg"
       viewBox="0 0 32 32"
-      shapeRendering="crispEdges"
       aria-hidden
       focusable="false"
     >
-      {/* Folder tab */}
       <path
-        fill="#ffcc00"
-        stroke="#000"
-        strokeWidth="1"
-        d="M6 12 L10 8 L20 8 L22 10 L26 10 L26 12 L6 12 Z"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.6"
+        d="M5 10.5A2.5 2.5 0 0 1 7.5 8H13l2 2h9.5A2.5 2.5 0 0 1 27 12.5v9A2.5 2.5 0 0 1 24.5 24h-17A2.5 2.5 0 0 1 5 21.5z"
       />
-      {/* Folder body */}
-      <rect x="5" y="12" width="22" height="14" fill="#c0c0c0" stroke="#000" strokeWidth="1" />
-      {/* Paper inside */}
-      <rect x="9" y="15" width="14" height="9" fill="#ffffff" stroke="#000" strokeWidth="1" />
-      <line x1="11" y1="18" x2="21" y2="18" stroke="#000" strokeWidth="1" />
-      <line x1="11" y1="21" x2="19" y2="21" stroke="#000" strokeWidth="1" />
+      <path d="M5 13h22M10 17h12M10 20h8" stroke="currentColor" strokeLinecap="round" strokeWidth="1.6" />
     </svg>
   )
 }
@@ -39,25 +34,29 @@ function MainPage() {
   )
 
   return (
-    <div>
-      <p>
-        Hi, My name is Reinaldo Assis! :)
-        <br />
-        <br />
-        I'm a Web Developer with a passion for creating beautiful and functional websites.
-        <br />
-        I have been working in the industry for {yearsInIndustry} years.
-        <br />
-        <br />
-        Navigate through the pages to know more about my services!
-      </p>
+    <div className="main-page">
+      <div className="main-page__hero">
+        <p className="main-page__eyebrow">FULL-STACK DEVELOPER · DIGITAL CRAFT · BRAZIL</p>
+        <h1>Hi, I&apos;m Reinaldo Assis.</h1>
+        <p className="main-page__lead">
+          I&apos;m a Web Developer with a passion for creating beautiful and functional websites.
+        </p>
+        <p className="main-page__copy">
+          I have been working in the industry for {yearsInIndustry} years. Navigate through the pages to know more
+          about my services.
+        </p>
+      </div>
       <div className="main-page__contact-style-icons">
-        <Link to="/projects" className="contact-icon-item">
+        <Link to="/projects" className="contact-icon-item main-page__projects-link">
           <span className="contact-icon-item__graphic">
             <IconProjects />
           </span>
           <span className="contact-icon-item__label">
-            Projects
+            <span>Explore projects</span>
+            <span className="main-page__projects-sublabel">Selected work &amp; case studies</span>
+          </span>
+          <span className="main-page__projects-arrow" aria-hidden="true">
+            ↗
           </span>
         </Link>
       </div>

@@ -4,6 +4,11 @@ import { PROJECTS } from '../../data/projectsData'
 export default function ProjectsListPage() {
   return (
     <div className="projects-list">
+      <header className="projects-list__intro">
+        <p className="projects-list__eyebrow">SELECTED WORK</p>
+        <h1>Projects that make an impact.</h1>
+        <p>Some things I&apos;ve designed, engineered, and shipped with thoughtful teams.</p>
+      </header>
       <ul className="projects-list__grid">
         {PROJECTS.map((p) => (
           <li key={p.slug} className="projects-list__item">

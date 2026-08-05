@@ -87,27 +87,27 @@ function drawLifeHeart(ctx: CanvasRenderingContext2D, cx: number, cy: number, si
 }
 
 function draw(ctx: CanvasRenderingContext2D, m: Mutable) {
-  ctx.fillStyle = '#1a1a2e'
+  ctx.fillStyle = '#0b1026'
   ctx.fillRect(0, 0, W, H)
 
-  const palette = ['#e94560', '#f9d423', '#00adb5', '#c73659']
+  const palette = ['#86e8ff', '#b693ff', '#ff8fbd', '#7aa8ff']
   for (let r = 0; r < BRICK_ROWS; r++) {
     for (let c = 0; c < BRICK_COLS; c++) {
       if (!m.bricks[r][c]) continue
       const { x, y, w, h } = brickRect(c, r)
       ctx.fillStyle = palette[r % palette.length]
       ctx.fillRect(x, y, w, h)
-      ctx.strokeStyle = '#000'
+      ctx.strokeStyle = 'rgba(231, 249, 255, 0.42)'
       ctx.lineWidth = 1
       ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1)
     }
   }
 
-  ctx.fillStyle = '#c0c0c0'
+  ctx.fillStyle = '#c6f3ff'
   ctx.fillRect(m.paddleX, PADDLE_Y, PADDLE_W, PADDLE_H)
-  ctx.strokeStyle = '#fff'
+  ctx.strokeStyle = '#ffffff'
   ctx.strokeRect(m.paddleX + 0.5, PADDLE_Y + 0.5, PADDLE_W - 1, PADDLE_H - 1)
-  ctx.strokeStyle = '#404040'
+  ctx.strokeStyle = 'rgba(52, 83, 137, 0.9)'
   ctx.strokeRect(m.paddleX + 1.5, PADDLE_Y + 1.5, PADDLE_W - 3, PADDLE_H - 3)
 
   ctx.beginPath()
@@ -118,8 +118,8 @@ function draw(ctx: CanvasRenderingContext2D, m: Mutable) {
   ctx.lineWidth = 1
   ctx.stroke()
 
-  ctx.fillStyle = '#8892b0'
-  ctx.font = '32px sans-serif'
+  ctx.fillStyle = '#b9c9ed'
+  ctx.font = '600 32px sans-serif'
   ctx.textAlign = 'left'
   ctx.fillText(`Packets cleared: ${m.score}`, 16, 32)
 

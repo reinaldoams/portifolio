@@ -2,10 +2,11 @@ nav.win95-menu-bar {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: calc(4px * var(--ui-scale));
-  padding: calc(6px * var(--ui-scale)) calc(8px * var(--ui-scale));
-  background: var(--win95-face);
-  border-bottom: calc(1px * var(--ui-scale)) solid var(--win95-border-shadow);
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  background: rgba(6, 13, 33, 0.24);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
 
   .win95-menu-bar__toggle {
     display: none;
@@ -15,94 +16,108 @@ nav.win95-menu-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: calc(4px * var(--ui-scale));
+    gap: 0.45rem;
   }
 
   a {
-    display: inline-block;
-    padding: calc(6px * var(--ui-scale)) calc(12px * var(--ui-scale));
-    font-size: calc(14px * var(--ui-scale));
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding: 0.5rem 0.9rem;
+    color: rgba(229, 237, 255, 0.72);
+    font-size: 0.82rem;
     font-family: var(--sans);
-    color: var(--win95-text);
+    font-weight: 600;
+    letter-spacing: 0.01em;
     text-decoration: none;
-    background: var(--win95-face);
-    border: calc(2px * var(--ui-scale)) solid transparent;
-    border-radius: 0;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
 
     &:hover {
-      border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
-        var(--win95-border-light);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.18);
+      transform: translateY(-1px);
     }
 
     &:active {
-      border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
-        var(--win95-border-dark);
-      padding: calc(5px * var(--ui-scale)) calc(9px * var(--ui-scale)) calc(3px * var(--ui-scale))
-        calc(11px * var(--ui-scale));
+      transform: translateY(0);
     }
 
     &.is-active {
-      background: var(--win95-highlight);
-      color: var(--win95-highlight-text);
-      border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
-        var(--win95-border-dark);
+      color: #f9fdff;
+      background: linear-gradient(135deg, rgba(112, 198, 255, 0.28), rgba(150, 125, 255, 0.22));
+      border-color: rgba(169, 229, 255, 0.34);
+      box-shadow:
+        0 5px 14px rgba(55, 133, 229, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
-    &.is-active:hover {
-      color: var(--win95-highlight-text);
-      border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
-        var(--win95-border-dark);
+    &:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
     }
   }
 
   @media (max-width: 780px) {
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     position: relative;
-    min-height: calc(42px * var(--ui-scale));
+    min-height: 3.5rem;
+    padding: 0.55rem 0.7rem;
 
     .win95-menu-bar__toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       position: absolute;
-      top: calc(6px * var(--ui-scale));
-      right: calc(8px * var(--ui-scale));
-      padding: calc(4px * var(--ui-scale)) calc(10px * var(--ui-scale));
-      font: inherit;
-      font-size: calc(16px * var(--ui-scale));
-      line-height: 1;
+      top: 0.65rem;
+      right: 0.7rem;
+      width: 2.35rem;
+      height: 2.25rem;
+      padding: 0;
       color: var(--win95-text);
-      background: var(--win95-face);
-      border: calc(2px * var(--ui-scale)) solid;
-      border-color: var(--win95-border-light) var(--win95-border-dark) var(--win95-border-dark)
-        var(--win95-border-light);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.75rem;
       cursor: pointer;
       appearance: none;
+      transition: background 160ms ease, transform 160ms ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.16);
+      }
 
       &:active {
-        border-color: var(--win95-border-dark) var(--win95-border-light) var(--win95-border-light)
-          var(--win95-border-dark);
+        transform: scale(0.95);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 3px;
       }
     }
 
     .win95-menu-bar__toggle-close {
       display: inline-block;
-      font-size: calc(13px * var(--ui-scale));
-      font-weight: bold;
+      font-size: 1rem;
+      font-weight: 700;
       line-height: 1;
     }
 
     .win95-menu-bar__toggle-icon {
       display: inline-flex;
       flex-direction: column;
-      gap: calc(3px * var(--ui-scale));
+      gap: 0.25rem;
 
       span {
         display: block;
-        width: calc(16px * var(--ui-scale));
-        height: calc(2px * var(--ui-scale));
-        background: var(--win95-text);
+        width: 1.05rem;
+        height: 2px;
+        border-radius: 99px;
+        background: currentColor;
       }
     }
 
@@ -111,7 +126,9 @@ nav.win95-menu-bar {
       width: 100%;
       flex-direction: column;
       align-items: stretch;
-      margin-top: 0;
+      gap: 0.35rem;
+      margin-top: 3rem;
+      padding-top: 0.25rem;
     }
 
     .win95-menu-bar__links.is-open {
@@ -120,6 +137,7 @@ nav.win95-menu-bar {
 
     a {
       width: 100%;
+      justify-content: flex-start;
       text-align: left;
     }
   }
