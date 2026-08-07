@@ -202,6 +202,12 @@ function App() {
 
   return (
     <div className="win95-desktop">
+      <div className="win95-aura" aria-hidden="true">
+        <span className="win95-aura__blob win95-aura__blob--a" />
+        <span className="win95-aura__blob win95-aura__blob--b" />
+        <span className="win95-aura__blob win95-aura__blob--c" />
+        <span className="win95-aura__blob win95-aura__blob--d" />
+      </div>
       <Analytics />
       <Routes>
         <Route

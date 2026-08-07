@@ -15,29 +15,72 @@
     var(--win95-desktop);
 }
 
-.win95-desktop::before,
 .win95-desktop::after {
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   content: "";
-}
-
-.win95-desktop::before {
-  background:
-    radial-gradient(circle at 45% 35%, rgba(116, 156, 255, 0.13), transparent 18%),
-    radial-gradient(circle at 58% 62%, rgba(91, 235, 255, 0.1), transparent 24%);
-  filter: blur(34px);
-  animation: liquid-drift 18s ease-in-out infinite alternate;
-}
-
-.win95-desktop::after {
   background-image:
     linear-gradient(rgba(185, 211, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(185, 211, 255, 0.035) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 80%);
+}
+
+.win95-aura {
+  position: absolute;
+  inset: -12%;
+  z-index: -1;
+  pointer-events: none;
+  animation: aura-hue 10s ease-in-out infinite;
+}
+
+.win95-aura__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.win95-aura__blob--a {
+  top: -14%;
+  left: -12%;
+  width: 52vw;
+  height: 52vw;
+  background: radial-gradient(circle at 35% 35%, rgba(143, 232, 255, 0.85), rgba(143, 232, 255, 0) 78%);
+  animation: aura-drift-a 9s ease-in-out infinite;
+}
+
+.win95-aura__blob--b {
+  top: 4%;
+  right: -20%;
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle at 60% 40%, rgba(120, 169, 255, 0.8), rgba(120, 169, 255, 0) 80%);
+  animation: aura-drift-b 11s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.win95-aura__blob--c {
+  bottom: -22%;
+  left: 18%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle at 45% 55%, rgba(182, 147, 255, 0.8), rgba(182, 147, 255, 0) 80%);
+  animation: aura-drift-c 10s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+.win95-aura__blob--d {
+  bottom: -4%;
+  right: 0%;
+  width: 36vw;
+  height: 36vw;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 141, 214, 0.65), rgba(255, 141, 214, 0) 80%);
+  animation: aura-drift-d 8s ease-in-out infinite;
+  animation-delay: -2s;
 }
 
 .win95-window--app {
@@ -46,7 +89,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: min(1400px, 100%);
+  width: min(1050px, 75%);
   min-height: 0;
   margin: 0 auto;
   overflow: hidden;
@@ -421,13 +464,74 @@ button.win95-titlebar__control {
   }
 }
 
-@keyframes liquid-drift {
-  from {
-    transform: translate3d(-3%, -2%, 0) scale(1);
+@keyframes aura-hue {
+  0%,
+  100% {
+    filter: hue-rotate(0deg) saturate(1);
   }
 
-  to {
-    transform: translate3d(3%, 2%, 0) scale(1.08);
+  50% {
+    filter: hue-rotate(45deg) saturate(1.3);
+  }
+}
+
+@keyframes aura-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(13vw, 9vh, 0) scale(1.15);
+  }
+
+  50% {
+    transform: translate3d(4vw, 20vh, 0) scale(0.88);
+  }
+
+  75% {
+    transform: translate3d(-11vw, 6vh, 0) scale(1.1);
+  }
+}
+
+@keyframes aura-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  30% {
+    transform: translate3d(-15vw, 12vh, 0) scale(1.2);
+  }
+
+  65% {
+    transform: translate3d(-6vw, -13vh, 0) scale(0.85);
+  }
+}
+
+@keyframes aura-drift-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  35% {
+    transform: translate3d(11vw, -14vh, 0) scale(1.12);
+  }
+
+  70% {
+    transform: translate3d(-9vw, -4vh, 0) scale(1.25);
+  }
+}
+
+@keyframes aura-drift-d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-13vw, -18vh, 0) scale(1.3);
   }
 }
 
@@ -502,8 +606,19 @@ button.win95-titlebar__control {
   }
 }
 
+@media (max-width: 780px) {
+  .win95-aura__blob {
+    filter: blur(44px);
+  }
+
+  .win95-aura__blob--d {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .win95-desktop::before {
+  .win95-aura,
+  .win95-aura__blob {
     animation: none;
   }
 
