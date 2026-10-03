@@ -24,7 +24,7 @@ function BodySwitcher() {
   )
 }
 
-/** Glassy portfolio shortcut icon: a compact window with a few interface details. */
+/** Terminal-style portfolio shortcut icon: a compact window with a few interface details. */
 function DesktopExeIcon() {
   return (
     <svg
@@ -35,15 +35,15 @@ function DesktopExeIcon() {
     >
       <defs>
         <linearGradient id="portfolio-shortcut-gradient" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#9deeff" stopOpacity="0.9" />
-          <stop offset="1" stopColor="#a897ff" stopOpacity="0.72" />
+          <stop offset="0" stopColor="#9dffb0" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#138a30" stopOpacity="0.72" />
         </linearGradient>
       </defs>
       <rect x="4" y="5" width="24" height="22" rx="6" fill="url(#portfolio-shortcut-gradient)" opacity="0.42" />
       <rect x="4" y="5" width="24" height="22" rx="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
       <path d="M5.5 11.5h21" stroke="currentColor" strokeOpacity="0.7" strokeWidth="1.2" />
-      <circle cx="9" cy="8.5" r="1" fill="#9deeff" />
-      <circle cx="12.5" cy="8.5" r="1" fill="#c4b4ff" />
+      <circle cx="9" cy="8.5" r="1" fill="#9dffb0" />
+      <circle cx="12.5" cy="8.5" r="1" fill="#22c74a" />
       <path d="M9 17h9M9 21h13" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
     </svg>
   )
@@ -58,9 +58,9 @@ function DesktopGameExeIcon() {
       aria-hidden
       focusable="false"
     >
-      <rect x="4" y="5" width="24" height="19" rx="6" fill="#081329" fillOpacity="0.76" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M8 10h16M8 14h5M8 18h9" stroke="#8fe8ff" strokeLinecap="round" strokeWidth="1.5" />
-      <circle cx="22" cy="14" r="2.2" fill="#b693ff" />
+      <rect x="4" y="5" width="24" height="19" rx="6" fill="#020602" fillOpacity="0.76" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M8 10h16M8 14h5M8 18h9" stroke="#9dffb0" strokeLinecap="round" strokeWidth="1.5" />
+      <circle cx="22" cy="14" r="2.2" fill="#33ff66" />
       <path d="M13 24v3M19 24v3M10 27h12" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5" />
     </svg>
   )
@@ -74,9 +74,9 @@ function GameTitlebarIcon() {
       aria-hidden
       focusable="false"
     >
-      <rect x="1.5" y="2" width="15" height="11" rx="3" fill="#081329" fillOpacity="0.76" stroke="currentColor" strokeWidth="1" />
-      <path d="M4.5 6h5M4.5 9h3" stroke="#8fe8ff" strokeLinecap="round" strokeWidth="1" />
-      <circle cx="13" cy="7" r="1.4" fill="#b693ff" />
+      <rect x="1.5" y="2" width="15" height="11" rx="3" fill="#020602" fillOpacity="0.76" stroke="currentColor" strokeWidth="1" />
+      <path d="M4.5 6h5M4.5 9h3" stroke="#9dffb0" strokeLinecap="round" strokeWidth="1" />
+      <circle cx="13" cy="7" r="1.4" fill="#33ff66" />
       <path d="M7 14v2M11 14v2M5 16h8" stroke="currentColor" strokeLinecap="round" strokeWidth="1" />
     </svg>
   )

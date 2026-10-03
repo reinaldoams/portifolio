@@ -6,66 +6,71 @@
 
 .main-page__hero {
   position: relative;
-  overflow: hidden;
-  padding: clamp(1.4rem, 5vw, 4rem);
-  border: 1px solid rgba(255, 255, 255, 0.17);
-  border-radius: 1.7rem;
-  background:
-    radial-gradient(circle at 100% 0%, rgba(174, 132, 255, 0.2), transparent 34%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045));
-  box-shadow:
-    0 24px 55px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  backdrop-filter: blur(18px) saturate(130%);
-  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid var(--term-line);
+  background: rgba(0, 0, 0, 0.5);
 
-  &::after {
+  &::before {
     position: absolute;
-    right: 1.7rem;
-    bottom: 1.7rem;
-    width: 5rem;
-    height: 5rem;
-    content: "";
-    border: 1px solid rgba(155, 226, 255, 0.3);
-    border-radius: 50%;
-    box-shadow:
-      0 0 0 0.75rem rgba(155, 226, 255, 0.04),
-      0 0 0 1.5rem rgba(155, 226, 255, 0.025);
-    opacity: 0.65;
-    pointer-events: none;
+    top: -0.7em;
+    left: 1rem;
+    padding: 0 0.4rem;
+    content: " whoami ";
+    color: var(--term-green-mid);
+    font-size: 0.75rem;
+    background: var(--term-bg);
   }
 }
 
 .main-page__eyebrow {
-  margin-bottom: 1rem;
-  color: var(--cyan);
+  margin-bottom: 1.1rem;
+  color: var(--term-green-mid);
   font-family: var(--mono);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+
+  &::before {
+    content: "$ cat role.txt\A";
+    white-space: pre;
+    color: var(--term-green-dim);
+  }
 }
 
 .main-page h1 {
-  max-width: 12ch;
+  max-width: 16ch;
   margin-bottom: 1.25rem;
-  background: linear-gradient(110deg, #ffffff 10%, #a9e9ff 58%, #c8b5ff 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+
+  &::before {
+    content: "> ";
+    color: var(--term-green-dim);
+  }
+
+  &::after {
+    content: "_";
+    margin-left: 0.1em;
+    color: var(--term-green);
+    animation: cursor-blink 1s steps(1) infinite;
+  }
 }
 
 .main-page__lead {
-  max-width: 34rem;
-  color: rgba(243, 247, 255, 0.92);
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1.5;
+  max-width: 38rem;
+  color: var(--term-green);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.55;
 }
 
 .main-page__copy {
-  max-width: 38rem;
+  max-width: 40rem;
   margin-top: 1rem;
-  color: var(--win95-text-gray);
-  font-size: 0.95rem;
+  color: var(--term-green-mid);
+  font-size: 0.9rem;
+
+  &::before {
+    content: "# ";
+    color: var(--term-green-dim);
+  }
 }
 
 .main-page__contact-style-icons {
@@ -84,30 +89,18 @@
   justify-content: flex-start;
   gap: 0.8rem;
   width: min(100%, 23rem);
-  min-height: 4.7rem;
-  padding: 0.7rem 0.85rem;
-  border-radius: 1.15rem;
-  background:
-    linear-gradient(105deg, rgba(139, 225, 255, 0.2), rgba(163, 136, 255, 0.13)),
-    rgba(255, 255, 255, 0.06);
+  min-height: 4.2rem;
+  padding: 0.6rem 0.8rem;
 
   &::after {
     display: none;
   }
 
-  &:hover {
-    transform: translateY(-3px) translateX(2px);
-    background:
-      linear-gradient(105deg, rgba(139, 225, 255, 0.28), rgba(163, 136, 255, 0.2)),
-      rgba(255, 255, 255, 0.08);
-  }
-
   .contact-icon-item__graphic {
-    width: 3rem;
-    height: 3rem;
+    width: 2.8rem;
+    height: 2.8rem;
     flex-shrink: 0;
     margin: 0;
-    border-radius: 0.95rem;
   }
 
   .contact-icon-item__label {
@@ -119,9 +112,9 @@
 }
 
 .main-page__projects-sublabel {
-  color: var(--win95-text-gray);
+  color: var(--term-green-mid);
   font-size: 0.7rem;
-  font-weight: 450;
+  font-weight: 400;
   line-height: 1.25;
 }
 
@@ -133,33 +126,25 @@
   width: 2rem;
   height: 2rem;
   margin-left: auto;
-  color: var(--cyan);
-  font-size: 1.25rem;
+  color: var(--term-green);
+  font-size: 1.1rem;
   line-height: 1;
-  border: 1px solid rgba(164, 230, 255, 0.26);
-  border-radius: 50%;
-  background: rgba(142, 224, 255, 0.1);
-  transition: transform 180ms ease, background 180ms ease;
+  border: 1px solid var(--term-line);
 }
 
 .main-page__projects-link:hover .main-page__projects-arrow {
-  transform: translate(2px, -2px);
-  background: rgba(142, 224, 255, 0.2);
+  color: var(--term-bg);
+  background: var(--term-green);
 }
 
 @media (max-width: 540px) {
   .main-page__hero {
-    padding: 1.4rem;
-    border-radius: 1.25rem;
-
-    &::after {
-      right: -1.6rem;
-      bottom: -1.6rem;
-    }
+    padding: 1.25rem 1rem;
   }
+}
 
-  .main-page__eyebrow {
-    max-width: 23rem;
-    line-height: 1.5;
+@media (prefers-reduced-motion: reduce) {
+  .main-page h1::after {
+    animation: none;
   }
 }

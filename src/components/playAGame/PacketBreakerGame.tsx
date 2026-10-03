@@ -79,49 +79,49 @@ function drawLifeHeart(ctx: CanvasRenderingContext2D, cx: number, cy: number, si
   ctx.bezierCurveTo(cx + hw * 0.22, topY, cx + hw, cy - size * 0.38, cx + hw, cy - size * 0.18)
   ctx.bezierCurveTo(cx + hw, cy + size * 0.02, cx + hw * 0.25, cy + size * 0.14, cx, tipY)
   ctx.closePath()
-  ctx.fillStyle = '#e94560'
+  ctx.fillStyle = '#33ff66'
   ctx.fill()
-  ctx.strokeStyle = '#5c1524'
+  ctx.strokeStyle = '#0b4d1b'
   ctx.lineWidth = 1.5
   ctx.stroke()
 }
 
 function draw(ctx: CanvasRenderingContext2D, m: Mutable) {
-  ctx.fillStyle = '#0b1026'
+  ctx.fillStyle = '#010401'
   ctx.fillRect(0, 0, W, H)
 
-  const palette = ['#86e8ff', '#b693ff', '#ff8fbd', '#7aa8ff']
+  const palette = ['#9dffb0', '#33ff66', '#22c74a', '#138a30']
   for (let r = 0; r < BRICK_ROWS; r++) {
     for (let c = 0; c < BRICK_COLS; c++) {
       if (!m.bricks[r][c]) continue
       const { x, y, w, h } = brickRect(c, r)
       ctx.fillStyle = palette[r % palette.length]
       ctx.fillRect(x, y, w, h)
-      ctx.strokeStyle = 'rgba(231, 249, 255, 0.42)'
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.6)'
       ctx.lineWidth = 1
       ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1)
     }
   }
 
-  ctx.fillStyle = '#c6f3ff'
+  ctx.fillStyle = '#33ff66'
   ctx.fillRect(m.paddleX, PADDLE_Y, PADDLE_W, PADDLE_H)
-  ctx.strokeStyle = '#ffffff'
+  ctx.strokeStyle = '#9dffb0'
   ctx.strokeRect(m.paddleX + 0.5, PADDLE_Y + 0.5, PADDLE_W - 1, PADDLE_H - 1)
-  ctx.strokeStyle = 'rgba(52, 83, 137, 0.9)'
+  ctx.strokeStyle = 'rgba(0, 40, 10, 0.9)'
   ctx.strokeRect(m.paddleX + 1.5, PADDLE_Y + 1.5, PADDLE_W - 3, PADDLE_H - 3)
 
   ctx.beginPath()
   ctx.arc(m.ballX, m.ballY, BALL_R, 0, Math.PI * 2)
-  ctx.fillStyle = '#ffff88'
+  ctx.fillStyle = '#d9ffe0'
   ctx.fill()
-  ctx.strokeStyle = '#886600'
+  ctx.strokeStyle = '#33ff66'
   ctx.lineWidth = 1
   ctx.stroke()
 
-  ctx.fillStyle = '#b9c9ed'
-  ctx.font = '600 32px sans-serif'
+  ctx.fillStyle = '#33ff66'
+  ctx.font = '32px VT323, monospace'
   ctx.textAlign = 'left'
-  ctx.fillText(`Packets cleared: ${m.score}`, 16, 32)
+  ctx.fillText(`> packets_cleared: ${m.score}`, 16, 32)
 
   const heartSize = 28
   const heartGap = 8
@@ -134,22 +134,22 @@ function draw(ctx: CanvasRenderingContext2D, m: Mutable) {
   if (m.over === 'won') {
     ctx.fillStyle = 'rgba(0,0,0,0.65)'
     ctx.fillRect(0, 0, W, H)
-    ctx.fillStyle = '#7fff7f'
-    ctx.font = 'bold 32px sans-serif'
+    ctx.fillStyle = '#9dffb0'
+    ctx.font = '40px VT323, monospace'
     ctx.textAlign = 'center'
     ctx.fillText('YOU WON', W / 2, H / 2 - 16)
-    ctx.fillStyle = '#fff'
-    ctx.font = '22px sans-serif'
+    ctx.fillStyle = '#33ff66'
+    ctx.font = '26px VT323, monospace'
     ctx.fillText('Press R to play again', W / 2, H / 2 + 28)
   } else if (m.over === 'lost') {
     ctx.fillStyle = 'rgba(0,0,0,0.65)'
     ctx.fillRect(0, 0, W, H)
-    ctx.fillStyle = '#ff6b6b'
-    ctx.font = 'bold 32px sans-serif'
+    ctx.fillStyle = '#ff4f4f'
+    ctx.font = '40px VT323, monospace'
     ctx.textAlign = 'center'
     ctx.fillText('YOU LOST', W / 2, H / 2 - 16)
-    ctx.fillStyle = '#fff'
-    ctx.font = '22px sans-serif'
+    ctx.fillStyle = '#33ff66'
+    ctx.font = '26px VT323, monospace'
     ctx.fillText('Press R to play again', W / 2, H / 2 + 28)
   }
 }

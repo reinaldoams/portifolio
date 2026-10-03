@@ -9,78 +9,69 @@
   overflow: hidden;
   padding: 1.25rem;
   background:
-    radial-gradient(circle at 12% 8%, rgba(78, 124, 255, 0.28), transparent 30%),
-    radial-gradient(circle at 90% 14%, rgba(188, 101, 255, 0.2), transparent 27%),
-    radial-gradient(circle at 72% 90%, rgba(24, 202, 218, 0.18), transparent 33%),
-    var(--win95-desktop);
+    radial-gradient(ellipse at 50% 45%, rgba(20, 90, 35, 0.22), transparent 70%),
+    var(--term-bg);
 }
 
+/* CRT scanlines + vignette over everything */
 .win95-desktop::after {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  content: "";
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.22) 3px,
+      rgba(0, 0, 0, 0) 4px
+    ),
+    radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, 0.6) 100%);
+  animation: crt-flicker 6s steps(1) infinite;
+}
+
+/* Background layer: faint grid + rolling refresh bar */
+.win95-aura {
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  content: "";
+  overflow: hidden;
   background-image:
-    linear-gradient(rgba(185, 211, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(185, 211, 255, 0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72), transparent 80%);
-}
-
-.win95-aura {
-  position: absolute;
-  inset: -12%;
-  z-index: -1;
-  pointer-events: none;
-  animation: aura-hue 10s ease-in-out infinite;
+    linear-gradient(rgba(51, 255, 102, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 255, 102, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 .win95-aura__blob {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  mix-blend-mode: screen;
+  left: 0;
+  right: 0;
+  display: block;
   will-change: transform;
 }
 
 .win95-aura__blob--a {
-  top: -14%;
-  left: -12%;
-  width: 52vw;
-  height: 52vw;
-  background: radial-gradient(circle at 35% 35%, rgba(143, 232, 255, 0.85), rgba(143, 232, 255, 0) 78%);
-  animation: aura-drift-a 9s ease-in-out infinite;
+  top: 0;
+  height: 22vh;
+  background: linear-gradient(to bottom, transparent, rgba(51, 255, 102, 0.06) 70%, rgba(51, 255, 102, 0.12) 98%, transparent);
+  animation: crt-roll 7s linear infinite;
 }
 
 .win95-aura__blob--b {
-  top: 4%;
-  right: -20%;
-  width: 46vw;
-  height: 46vw;
-  background: radial-gradient(circle at 60% 40%, rgba(120, 169, 255, 0.8), rgba(120, 169, 255, 0) 80%);
-  animation: aura-drift-b 11s ease-in-out infinite;
+  top: 0;
+  height: 2px;
+  background: rgba(51, 255, 102, 0.18);
+  box-shadow: 0 0 12px rgba(51, 255, 102, 0.4);
+  animation: crt-roll 11s linear infinite;
   animation-delay: -4s;
 }
 
-.win95-aura__blob--c {
-  bottom: -22%;
-  left: 18%;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle at 45% 55%, rgba(182, 147, 255, 0.8), rgba(182, 147, 255, 0) 80%);
-  animation: aura-drift-c 10s ease-in-out infinite;
-  animation-delay: -7s;
-}
-
+.win95-aura__blob--c,
 .win95-aura__blob--d {
-  bottom: -4%;
-  right: 0%;
-  width: 36vw;
-  height: 36vw;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 141, 214, 0.65), rgba(255, 141, 214, 0) 80%);
-  animation: aura-drift-d 8s ease-in-out infinite;
-  animation-delay: -2s;
+  display: none;
 }
 
 .win95-window--app {
@@ -93,15 +84,13 @@
   min-height: 0;
   margin: 0 auto;
   overflow: hidden;
-  border: 1px solid var(--glass-line);
-  border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.055));
+  border: 1px solid var(--term-line);
+  border-radius: 4px;
+  background: var(--term-panel);
   box-shadow:
-    0 0 0 1px rgba(120, 174, 255, 0.08),
-    var(--glass-shadow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(28px) saturate(145%);
-  -webkit-backdrop-filter: blur(28px) saturate(145%);
+    0 0 0 1px rgba(0, 0, 0, 0.8),
+    0 0 24px rgba(51, 255, 102, 0.18),
+    inset 0 0 60px rgba(51, 255, 102, 0.05);
 }
 
 .win95-window--app > .win95-titlebar,
@@ -115,37 +104,36 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-height: 3.75rem;
-  padding: 0.75rem 1rem;
-  color: var(--win95-titlebar-text);
-  font-weight: 650;
-  font-size: 0.93rem;
-  letter-spacing: 0.01em;
+  min-height: 2.6rem;
+  padding: 0.35rem 0.75rem;
+  color: var(--term-bg);
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-shadow: none;
   user-select: none;
-  background: linear-gradient(100deg, rgba(12, 21, 54, 0.76), rgba(42, 38, 94, 0.56));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 12px 26px rgba(4, 9, 25, 0.14);
-  backdrop-filter: blur(24px) saturate(150%);
-  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  background: var(--term-green);
+  border-bottom: 1px solid var(--term-green);
 }
 
 .win95-titlebar__icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   flex-shrink: 0;
   display: block;
   object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  border-radius: 0.7rem;
-  background: rgba(255, 255, 255, 0.14);
-  box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--term-bg);
+  border-radius: 0;
+  background: var(--term-bg);
+  filter: grayscale(1) sepia(1) hue-rotate(70deg) saturate(3) brightness(0.9) contrast(1.2);
 }
 
 .win95-titlebar__icon--game {
   object-fit: fill;
-  padding: 0.15rem;
+  padding: 0.1rem;
+  color: var(--term-green);
+  filter: none;
 }
 
 .win95-titlebar__text {
@@ -153,11 +141,17 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  &::before {
+    content: "root@reinaldo: ~/";
+    font-weight: 500;
+    opacity: 0.75;
+  }
 }
 
 .win95-titlebar__controls {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.3rem;
   flex-shrink: 0;
 }
 
@@ -165,24 +159,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.6rem;
   padding: 0;
-  color: rgba(245, 248, 255, 0.86);
+  color: var(--term-green);
+  font-family: var(--mono);
   font-size: 0.8rem;
   line-height: 1;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.65rem;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  background: var(--term-bg);
+  border: 1px solid var(--term-bg);
+  border-radius: 0;
 
   &--close {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
 
   &--disabled {
     pointer-events: none;
-    opacity: 0.38;
+    opacity: 0.45;
   }
 }
 
@@ -192,26 +186,24 @@ button.win95-titlebar__control {
   font-size: 0.8rem;
   cursor: pointer;
   appearance: none;
-  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
 
   &.win95-titlebar__control--close {
-    font-size: 1.05rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 700;
   }
 
   &:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.38);
+    color: var(--term-bg);
+    background: var(--term-green-bright);
   }
 
   &.win95-titlebar__control--close:hover {
-    background: rgba(255, 110, 139, 0.35);
-    border-color: rgba(255, 185, 199, 0.58);
+    color: var(--term-bg);
+    background: var(--term-red);
   }
 
   &:active {
-    transform: scale(0.94);
+    transform: translateY(1px);
   }
 }
 
@@ -230,7 +222,7 @@ button.win95-titlebar__control {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: stretch;
 }
 
@@ -238,43 +230,32 @@ button.win95-titlebar__control {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 10.5rem;
+  width: 11rem;
   max-width: 100%;
   margin: 0;
   padding: 1.1rem 0.9rem 1rem;
-  color: var(--win95-text);
+  color: var(--term-green);
   font: inherit;
   text-align: center;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
   cursor: pointer;
   touch-action: manipulation;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 1.35rem;
-  box-shadow:
-    0 18px 34px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px) saturate(135%);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
-  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px dashed var(--term-line);
+  border-radius: 0;
+  transition: background 120ms steps(2), border-color 120ms steps(2), color 120ms steps(2);
 
   &:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(164, 225, 255, 0.4);
-    box-shadow:
-      0 24px 42px rgba(0, 0, 0, 0.24),
-      0 0 24px rgba(116, 192, 255, 0.12),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--cyan);
-    outline-offset: 4px;
+    color: var(--term-green-bright);
+    background: var(--term-green-faint);
+    border-style: solid;
+    border-color: var(--term-green);
+    box-shadow: 0 0 18px rgba(51, 255, 102, 0.25);
   }
 
   &:active {
-    transform: translateY(-1px) scale(0.98);
+    color: var(--term-bg);
+    background: var(--term-green);
+    text-shadow: none;
   }
 }
 
@@ -282,31 +263,31 @@ button.win95-titlebar__control {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4.25rem;
-  height: 4.25rem;
+  width: 4rem;
+  height: 4rem;
   margin-bottom: 0.65rem;
-  border-radius: 1.25rem;
-  background: linear-gradient(145deg, rgba(177, 236, 255, 0.36), rgba(144, 121, 255, 0.24));
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow:
-    0 10px 22px rgba(29, 38, 99, 0.26),
-    inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  color: var(--term-green);
+  border: 1px solid var(--term-line);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .win95-desktop-shortcut__svg {
   display: block;
   width: 2.8rem;
   height: 2.8rem;
-  image-rendering: auto;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 0 4px rgba(51, 255, 102, 0.6));
 }
 
 .win95-desktop-shortcut__label {
-  font-size: 0.78rem;
-  font-weight: 650;
-  line-height: 1.25;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
   word-break: break-word;
-  hyphens: manual;
+
+  &::before {
+    content: "./";
+    color: var(--term-green-dim);
+  }
 }
 
 .win95-window__route-mount {
@@ -323,7 +304,7 @@ button.win95-titlebar__control {
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
-  padding: 1rem;
+  padding: 0.75rem;
   background: transparent;
 }
 
@@ -341,14 +322,9 @@ button.win95-titlebar__control {
   padding: 0;
   overflow: hidden;
   overscroll-behavior: contain;
-  background: rgba(3, 9, 27, 0.24);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 1.4rem;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 0 40px rgba(3, 8, 28, 0.12);
-  backdrop-filter: blur(22px) saturate(125%);
-  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--term-line-soft);
+  border-radius: 0;
 }
 
 .routes__viewport {
@@ -366,7 +342,7 @@ button.win95-titlebar__control {
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: clamp(1.25rem, 3vw, 3rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
   scrollbar-width: none;
   -ms-overflow-style: none;
   text-align: center;
@@ -384,45 +360,45 @@ button.win95-titlebar__control {
   flex-shrink: 0;
   width: 1.1rem;
   align-self: stretch;
-  padding: 0.35rem 0.28rem;
-  background: rgba(255, 255, 255, 0.035);
-  border-left: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-left: 1px solid var(--term-line-soft);
 }
 
 .routes__scrollbar-btn {
   flex-shrink: 0;
   width: 100%;
-  height: 1.25rem;
+  height: 1.1rem;
   margin: 0;
   padding: 0;
-  border: 1px solid transparent;
-  border-radius: 999px;
+  border: 0;
+  border-radius: 0;
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  opacity: 0.58;
+  opacity: 0.8;
 
   &:hover:not(:disabled) {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(51, 255, 102, 0.18);
     opacity: 1;
   }
 
   &:disabled {
     cursor: default;
-    opacity: 0.22;
+    opacity: 0.25;
   }
 
   &:active:not(:disabled) {
-    background-color: rgba(139, 222, 255, 0.2);
+    background-color: rgba(51, 255, 102, 0.35);
   }
 
   &--up {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23c9dfff' d='M5 0l5 6H0z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2333ff66' d='M5 0l5 6H0z'/%3E%3C/svg%3E");
   }
 
   &--down {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23c9dfff' d='M5 6l5-6H0z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2333ff66' d='M5 6l5-6H0z'/%3E%3C/svg%3E");
   }
 }
 
@@ -430,108 +406,80 @@ button.win95-titlebar__control {
   position: relative;
   flex: 1;
   min-height: 2rem;
-  margin: 0.25rem 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(51, 255, 102, 0.12) 0,
+    rgba(51, 255, 102, 0.12) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  border-top: 1px solid var(--term-line-soft);
+  border-bottom: 1px solid var(--term-line-soft);
 }
 
 .routes__scrollbar-thumb {
   position: absolute;
-  left: 1px;
-  right: 1px;
+  left: 2px;
+  right: 2px;
   top: 0;
   width: auto;
   box-sizing: border-box;
   min-height: 1.35rem;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(183, 238, 255, 0.8), rgba(136, 150, 255, 0.8));
-  border: 1px solid rgba(255, 255, 255, 0.44);
-  box-shadow:
-    0 2px 10px rgba(100, 150, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border-radius: 0;
+  background: var(--term-green-mid);
+  border: 1px solid var(--term-green-bright);
+  box-shadow: 0 0 8px rgba(51, 255, 102, 0.5);
   cursor: grab;
   touch-action: none;
 
   &:hover {
-    filter: brightness(1.1);
+    background: var(--term-green);
   }
 
   &:active,
   &--dragging {
     cursor: grabbing;
-    background: linear-gradient(180deg, rgba(213, 247, 255, 0.9), rgba(167, 161, 255, 0.9));
+    background: var(--term-green-bright);
   }
 }
 
-@keyframes aura-hue {
-  0%,
-  100% {
-    filter: hue-rotate(0deg) saturate(1);
+@keyframes crt-roll {
+  from {
+    transform: translateY(-25vh);
   }
 
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+@keyframes crt-flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  41% {
+    opacity: 0.86;
+  }
+
+  42% {
+    opacity: 1;
+  }
+
+  77% {
+    opacity: 0.92;
+  }
+
+  78% {
+    opacity: 1;
+  }
+}
+
+@keyframes cursor-blink {
   50% {
-    filter: hue-rotate(45deg) saturate(1.3);
-  }
-}
-
-@keyframes aura-drift-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  25% {
-    transform: translate3d(13vw, 9vh, 0) scale(1.15);
-  }
-
-  50% {
-    transform: translate3d(4vw, 20vh, 0) scale(0.88);
-  }
-
-  75% {
-    transform: translate3d(-11vw, 6vh, 0) scale(1.1);
-  }
-}
-
-@keyframes aura-drift-b {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  30% {
-    transform: translate3d(-15vw, 12vh, 0) scale(1.2);
-  }
-
-  65% {
-    transform: translate3d(-6vw, -13vh, 0) scale(0.85);
-  }
-}
-
-@keyframes aura-drift-c {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  35% {
-    transform: translate3d(11vw, -14vh, 0) scale(1.12);
-  }
-
-  70% {
-    transform: translate3d(-9vw, -4vh, 0) scale(1.25);
-  }
-}
-
-@keyframes aura-drift-d {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate3d(-13vw, -18vh, 0) scale(1.3);
+    opacity: 0;
   }
 }
 
@@ -545,7 +493,7 @@ button.win95-titlebar__control {
   }
 
   .win95-window__body {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
 }
 
@@ -557,30 +505,14 @@ button.win95-titlebar__control {
   .win95-window--app {
     border-right: 0;
     border-left: 0;
-    border-radius: 0;
   }
 
-  .win95-titlebar {
-    min-height: 3.35rem;
-    padding: 0.65rem 0.75rem;
-  }
-
-  .win95-titlebar__icon {
-    width: 1.8rem;
-    height: 1.8rem;
-  }
-
-  .win95-titlebar__control {
-    width: 1.8rem;
-    height: 1.8rem;
+  .win95-titlebar__text::before {
+    content: "~/";
   }
 
   .win95-window__body {
-    padding: 0.5rem;
-  }
-
-  .routes {
-    border-radius: 1rem;
+    padding: 0.4rem;
   }
 
   .routes__content {
@@ -606,24 +538,13 @@ button.win95-titlebar__control {
   }
 }
 
-@media (max-width: 780px) {
-  .win95-aura__blob {
-    filter: blur(44px);
-  }
-
-  .win95-aura__blob--d {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .win95-aura,
+  .win95-desktop::after,
   .win95-aura__blob {
     animation: none;
   }
 
-  .win95-desktop-shortcut,
-  button.win95-titlebar__control {
+  .win95-desktop-shortcut {
     transition: none;
   }
 }

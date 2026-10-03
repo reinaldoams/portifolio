@@ -3,10 +3,9 @@ nav.win95-menu-bar {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.75rem 1rem;
-  background: rgba(6, 13, 33, 0.24);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  padding: 0.5rem 0.75rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid var(--term-line-soft);
 
   .win95-menu-bar__toggle {
     display: none;
@@ -16,48 +15,62 @@ nav.win95-menu-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
 
   a {
     display: inline-flex;
     align-items: center;
-    min-height: 2.25rem;
-    padding: 0.5rem 0.9rem;
-    color: rgba(229, 237, 255, 0.72);
+    min-height: 2.1rem;
+    padding: 0.35rem 0.85rem;
+    color: var(--term-green);
     font-size: 0.82rem;
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-weight: 600;
-    letter-spacing: 0.01em;
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid transparent;
-    border-radius: 999px;
-    transition: color 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+    background: rgba(51, 255, 102, 0.06);
+    border: 1px solid var(--term-line);
+    border-radius: 2px;
+    box-shadow: 3px 3px 0 var(--term-green-dim);
+    cursor: pointer;
+    transition: transform 80ms steps(1), box-shadow 80ms steps(1);
+
+    &::before {
+      content: "$";
+      margin-right: 0.45rem;
+      color: var(--term-green-dim);
+    }
+
+    &:visited {
+      color: var(--term-green);
+    }
 
     &:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.18);
-      transform: translateY(-1px);
+      color: var(--term-green-bright);
+      background: rgba(51, 255, 102, 0.14);
+      border-color: var(--term-green);
+      box-shadow:
+        3px 3px 0 var(--term-green-mid),
+        0 0 12px rgba(51, 255, 102, 0.3);
+      text-shadow: var(--term-glow);
     }
 
     &:active {
-      transform: translateY(0);
+      transform: translate(3px, 3px);
+      box-shadow: none;
     }
 
     &.is-active {
-      color: #f9fdff;
-      background: linear-gradient(135deg, rgba(112, 198, 255, 0.28), rgba(150, 125, 255, 0.22));
-      border-color: rgba(169, 229, 255, 0.34);
-      box-shadow:
-        0 5px 14px rgba(55, 133, 229, 0.14),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
+      color: var(--term-bg);
+      background: var(--term-green);
+      border-color: var(--term-green-bright);
+      box-shadow: 1px 1px 0 var(--term-green-dim);
+      transform: translate(2px, 2px);
+      text-shadow: none;
 
-    &:focus-visible {
-      outline: 2px solid var(--cyan);
-      outline-offset: 3px;
+      &::before {
+        color: var(--term-bg);
+      }
     }
   }
 
@@ -65,38 +78,43 @@ nav.win95-menu-bar {
     flex-direction: row;
     align-items: center;
     position: relative;
-    min-height: 3.5rem;
-    padding: 0.55rem 0.7rem;
+    min-height: 3rem;
+    padding: 0.45rem 0.6rem;
+
+    &::before {
+      position: absolute;
+      top: 0.45rem;
+      left: 0.7rem;
+      content: "$ menu";
+      color: var(--term-green-mid);
+      font-size: 0.82rem;
+      line-height: 2.1rem;
+    }
 
     .win95-menu-bar__toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       position: absolute;
-      top: 0.65rem;
-      right: 0.7rem;
-      width: 2.35rem;
-      height: 2.25rem;
+      top: 0.45rem;
+      right: 0.6rem;
+      width: 2.25rem;
+      height: 2.1rem;
       padding: 0;
-      color: var(--win95-text);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 0.75rem;
+      color: var(--term-green);
+      background: transparent;
+      border: 1px solid var(--term-line);
+      border-radius: 0;
       cursor: pointer;
       appearance: none;
-      transition: background 160ms ease, transform 160ms ease;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.16);
+        background: var(--term-green-faint);
       }
 
       &:active {
-        transform: scale(0.95);
-      }
-
-      &:focus-visible {
-        outline: 2px solid var(--cyan);
-        outline-offset: 3px;
+        color: var(--term-bg);
+        background: var(--term-green);
       }
     }
 
@@ -110,13 +128,12 @@ nav.win95-menu-bar {
     .win95-menu-bar__toggle-icon {
       display: inline-flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.22rem;
 
       span {
         display: block;
         width: 1.05rem;
         height: 2px;
-        border-radius: 99px;
         background: currentColor;
       }
     }
@@ -126,9 +143,8 @@ nav.win95-menu-bar {
       width: 100%;
       flex-direction: column;
       align-items: stretch;
-      gap: 0.35rem;
-      margin-top: 3rem;
-      padding-top: 0.25rem;
+      gap: 0.2rem;
+      margin-top: 2.6rem;
     }
 
     .win95-menu-bar__links.is-open {
